@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+     Spark Connect | Apache Spark
+    
+  </title>
+
+  
+
+  
+    <meta name="description" content="Spark Connect makes remote Spark development easier.">
+  
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+  <link href="/css/custom.css" rel="stylesheet">
+  <!-- Code highlighter CSS -->
+  <link href="/css/pygments-default.css" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(["disableCookies"]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://analytics.apache.org/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '40']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body class="global">
+<nav class="navbar navbar-expand-lg navbar-dark p-0 px-4" style="background: #1D6890;">
+  <a class="navbar-brand" href="/">
+    <img src="/images/spark-logo-rev.svg" alt="" width="141" height="72">
+  </a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+          aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse col-md-12 col-lg-auto pt-4" id="navbarContent">
+
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/downloads.html">Download</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="libraries" role="button" data-bs-toggle="dropdown"
+           aria-expanded="false">
+          Libraries
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="libraries">
+          <li><a class="dropdown-item" href="/sql/">SQL and DataFrames</a></li>
+          <li><a class="dropdown-item" href="/spark-connect/">Spark Connect</a></li>
+          <li><a class="dropdown-item" href="/streaming/">Spark Streaming</a></li>
+          <li><a class="dropdown-item" href="/mllib/">MLlib (machine learning)</a></li>
+          <li><a class="dropdown-item" href="/graphx/">GraphX (graph)</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="/third-party-projects.html">Third-Party Projects</a></li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="documentation" role="button" data-bs-toggle="dropdown"
+           aria-expanded="false">
+          Documentation
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="documentation">
+          <li><a class="dropdown-item" href="/docs/latest/">Latest Release</a></li>
+          <li><a class="dropdown-item" href="/documentation.html">Older Versions and Other Resources</a></li>
+          <li><a class="dropdown-item" href="/faq.html">Frequently Asked Questions</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/examples.html">Examples</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="community" role="button" data-bs-toggle="dropdown"
+           aria-expanded="false">
+          Community
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="community">
+          <li><a class="dropdown-item" href="/community.html">Mailing Lists &amp; Resources</a></li>
+          <li><a class="dropdown-item" href="/contributing.html">Contributing to Spark</a></li>
+          <li><a class="dropdown-item" href="/improvement-proposals.html">Improvement Proposals (SPIP)</a>
+          </li>
+          <li><a class="dropdown-item" href="https://issues.apache.org/jira/browse/SPARK">Issue Tracker</a>
+          </li>
+          <li><a class="dropdown-item" href="/powered-by.html">Powered By</a></li>
+          <li><a class="dropdown-item" href="/committers.html">Project Committers</a></li>
+          <li><a class="dropdown-item" href="/history.html">Project History</a></li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="developers" role="button" data-bs-toggle="dropdown"
+           aria-expanded="false">
+          Developers
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="developers">
+          <li><a class="dropdown-item" href="/developer-tools.html">Useful Developer Tools</a></li>
+          <li><a class="dropdown-item" href="/versioning-policy.html">Versioning Policy</a></li>
+          <li><a class="dropdown-item" href="/release-process.html">Release Process</a></li>
+          <li><a class="dropdown-item" href="/security.html">Security</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="apacheFoundation" role="button"
+           data-bs-toggle="dropdown" aria-expanded="false">
+          Apache Software Foundation
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="apacheFoundation">
+          <li><a class="dropdown-item" href="https://www.apache.org/">Apache Homepage</a></li>
+          <li><a class="dropdown-item" href="https://www.apache.org/licenses/">License</a></li>
+          <li><a class="dropdown-item"
+                 href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+          <li><a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+          <li><a class="dropdown-item" href="https://www.apache.org/security/">Security</a></li>
+          <li><a class="dropdown-item" href="https://www.apache.org/events/current-event">Event</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-12 col-md-9">
+      <p>This post explains the Spark Connect architecture, the benefits of Spark Connect, and how to upgrade to Spark Connect.</p>
+
+<p>Let’s start by exploring the architecture of Spark Connect at a high level.</p>
+
+<h2 id="high-level-spark-connect-architecture">High-level Spark Connect architecture</h2>
+
+<p>Spark Connect is a protocol that specifies how a client application can communicate with a remote Spark Server.  Clients that implement the Spark Connect protocol can connect and make requests to remote Spark Servers, very similar to how client applications can connect to databases using a JDBC driver - a query <code class="language-plaintext highlighter-rouge">spark.table("some_table").limit(5)</code> should simply return the result.  This architecture gives end users a great developer experience.</p>
+
+<p>Here’s how Spark Connect works at a high level:</p>
+
+<ol>
+  <li>A connection is established between the Client and Spark Server</li>
+  <li>The Client converts a DataFrame query to an unresolved logical plan</li>
+  <li>The unresolved logical plan is encoded and sent to the Spark Server</li>
+  <li>The Spark Server runs the query</li>
+  <li>The Spark Server sends the results back to the Client</li>
+</ol>
+
+<p><img src="/images/spark-connect1.png" style="width: 100%; max-width: 500px;" /></p>
+
+<p>Let’s go through these steps in more detail to get a better understanding of the inner workings of Spark Connect.</p>
+
+<p><strong>Establishing a connection between the Client and Spark Server</strong></p>
+
+<p>The network communication for Spark Connect uses the <a href="https://grpc.io/">gRPC framework</a>.</p>
+
+<p>gRPC is performant and language agnostic.  Spark Connect uses language-agnostic technologies, so it’s portable.</p>
+
+<p><strong>Converting a DataFrame query to an unresolved logical plan</strong></p>
+
+<p>The Client parses DataFrame queries and converts them to unresolved logical plans.</p>
+
+<p>Suppose you have the following DataFrame query: <code class="language-plaintext highlighter-rouge">spark.table("some_table").limit(5)</code>.</p>
+
+<p>Here’s the unresolved logical plan for the query:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>== Parsed Logical Plan ==
+GlobalLimit 5
++- LocalLimit 5
+   +- SubqueryAlias spark_catalog.default.some_table
+      +- Relation spark_catalog.default.some_table[character#15,franchise#16] parquet
+</code></pre></div></div>
+
+<p>The Client is responsible for creating the unresolved logical plan and passing it to the Spark Server for execution.</p>
+
+<p><strong>Sending the unresolved logical plan to the Spark Server</strong></p>
+
+<p>The unresolved logical plan must be serialized so it can be sent over a network.  Spark Connect uses Protocol Buffers, which are “language-neutral, platform-neutral extensible mechanisms for serializing structured data”.</p>
+
+<p>The Client and the Spark Server must be able to communicate with a language-neutral format like Protocol Buffers because they might be using different programming languages or different software versions.</p>
+
+<p>Now let’s look at how the Spark Server executes the query.</p>
+
+<p><strong>Executing the query on the Spark Server</strong></p>
+
+<p>The Spark Server receives the unresolved logical plan (once the Protocol Buffer is deserialized) and executes it just like any other query.</p>
+
+<p>Spark performs many optimizations to an unresolved logical plan before executing the query.  All of these optimizations happen on the Spark Server.</p>
+
+<p>Spark Connect lets you leverage Spark’s powerful query optimization capabilities, even with Clients that don’t depend on Spark or the JVM.</p>
+
+<p><strong>Sending the results back to the Client</strong></p>
+
+<p>The Spark Server sends the results back to the Client after executing the query.</p>
+
+<p>The results are sent to the client as Apache Arrow record batches.  A record batch includes many rows of data.</p>
+
+<p>The record batch is streamed to the client, which means it is sent in partial chunks, not all at once.  Streaming the results from the Spark Server to the Client prevents memory issues caused by an excessively large request.</p>
+
+<p>Here’s a recap of how Spark Connect works in image form:</p>
+
+<p><img src="/images/spark-connect2.png" style="width: 100%; max-width: 500px;" /></p>
+
+<h2 id="benefits-of-spark-connect">Benefits of Spark Connect</h2>
+
+<p>Let’s now turn our attention to the benefits of the Spark Connect architecture.</p>
+
+<p><strong>Spark Connect workloads are easier to maintain</strong></p>
+
+<p>With the Spark JVM architecture, the client and Spark Driver must run identical software versions.  They need the same Java, Scala, and other dependency versions.  Suppose you develop a Spark project on your local machine, package it as a JAR file, and deploy it in the cloud to run on a production dataset.  You need to build the JAR file on your local machine with the same dependencies used in the cloud.  If you compile the JAR file with Scala 2.13, you must also provision the cluster with a Spark JAR compiled with Scala 2.13.</p>
+
+<p>Suppose you are building your JAR with Scala 2.12, and your cloud provider releases a new runtime built with Scala 2.13.  For Spark JVM, you need to update your project locally, which may be challenging.  For example, when you update your project to Scala 2.13, you must also upgrade all the project dependencies (and transitive dependencies) to Scala 2.13.  If some of those JAR files don’t exist, you can’t upgrade.</p>
+
+<p>In contrast, Spark Connect decouples the client and the Spark Driver, so you can update the Spark Driver including server-side dependencies without updating the client.  This makes Spark projects much easier to maintain.</p>
+
+<p><strong>Spark Connect lets you build Spark Connect Clients in non-JVM languages</strong></p>
+
+<p>Spark Connect decouples the client and the Spark Driver so that you can write a Spark Connect Client in any language.  Here are some Spark Connect Clients that don’t depend on Java/Scala:</p>
+
+<ul>
+  <li><a href="https://github.com/apache/spark/tree/master/python/pyspark/sql/connect">Spark Connect Python</a></li>
+  <li><a href="https://github.com/apache/spark-connect-go">Spark Connect Go</a></li>
+  <li><a href="https://github.com/sjrusso8/spark-connect-rs">Spark Connect Rust</a></li>
+</ul>
+
+<p>For example, the Apache Spark Connect Client for Golang, <a href="https://github.com/apache/spark-connect-go">spark-connect-go</a>, implements the Spark Connect protocol and does not rely on Java.  You can use this Spark Connect Client to develop Spark applications with Go without installing Java or Spark.</p>
+
+<p>Here’s how to execute a query with the Go programming language using spark-connect-go:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>spark, _ := sql.SparkSession.Builder.Remote(remote).Build()
+df, _ := spark.Sql("select * from my_cool_table where age &gt; 42")
+df.Show(100, false)
+</code></pre></div></div>
+
+<p>When <code class="language-plaintext highlighter-rouge">df.Show()</code> is invoked, spark-connect-go processes the query into an unresolved logical plan and sends it to the Spark Driver for execution.</p>
+
+<p>spark-connect-go is a magnificent example of how the decoupled nature of Spark Connect allows for a better end-user experience.</p>
+
+<p>Go isn’t the only language that will benefit from this architecture.  The Spark Community is also building <a href="https://github.com/sjrusso8/spark-connect-rs">a Rust </a>Spark Connect Client.</p>
+
+<p><strong>Spark Connect allows for better remote development</strong></p>
+
+<p>Spark Connect also enables you to embed Spark in text editors on remote clusters without SSH (“remote development”).</p>
+
+<p>Embedding Spark in text editors with Classic Spark requires a Spark Session running locally or an SSH connection to a remote Spark Driver.</p>
+
+<p>Spark Connect lets you connect to a remote Spark Driver with a connection that’s fully embedded in a text editor without SSH.  This provides users with a better experience when developing code in a text editor like VS Code on a remote Spark cluster.</p>
+
+<p>With Spark Connect, switching from a local Spark Session to a remote Spark Session is easy - it’s just a matter of changing the connection string.</p>
+
+<p><strong>Spark Connect makes debugging easier</strong></p>
+
+<p>Spark Connect lets you connect a text editor like IntelliJ to a remote Spark cluster and step through your code with a debugger.  You can debug an application running on a production dataset, just like you would for a test dataset on your local machine.  This gives you a great developer experience, especially when you want to leverage high-quality debugging tools built into IDEs.</p>
+
+<p>Spark JVM does not allow for this debugging experience because it does not fully integrate with text editors.  Spark Connect allows you to build tight integrations in text editors with the wonderful debugging experience for remote Spark workflows.</p>
+
+<p><strong>Spark Connect is more stable</strong></p>
+
+<p>When many users access the same Spark JVM cluster, they all have to run computations on the same driver node, which can cause instability.  One user may execute code that causes the driver node to fail, rendering the Spark cluster unusable for the other cluster users.</p>
+
+<p>Spark Connect is more stable because the requests are formatted to unresolved logical plans on the client, not in the Spark Driver.  Spark Connect code that errors out will only cause the client to raise an out-of-memory exception.  It won’t cause the Spark Driver to have an out-of-memory exception that takes down the cluster for all users.</p>
+
+<h2 id="upgrading-to-spark-connect">Upgrading to Spark Connect</h2>
+
+<p>Spark Connect does not support all the Spark JVM APIs.  For example, Spark JVM has private methods that some users leverage to execute arbitrary Java code on Spark clusters.  Spark Connect obviously cannot support those methods because the Spark Connect client isn’t necessarily running Java!</p>
+
+<p>Check out the guide on migrating from Spark JVM to Spark Connect to learn more about how to write code that works with Spark Connect.  Also, check out how to build Spark Connect custom extensions to learn how to use specialized logic.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Spark Connect is a better architecture for running Spark in production settings.  It’s more flexible, easier to maintain, and provides a better developer experience.</p>
+
+<p>Migrating some Spark JVM codebases to Spark Connect is easy, but the migration is challenging for other codebases.  Codebases that leverage the RDD API or use private Spark JVM functions are more challenging to migrate.</p>
+
+<p>However, migrating from Spark JVM to Spark Connect is a one-time cost, so you will enjoy all the benefits once you migrate.</p>
+
+    </div>
+    <div class="col-12 col-md-3">
+      <div class="news" style="margin-bottom: 20px;">
+        <h5>Latest News</h5>
+        <ul class="list-unstyled">
+          
+          <li><a href="/news/spark-3-5-1-released.html">Spark 3.5.1 released</a>
+            <span class="small">(Feb 23, 2024)</span></li>
+          
+          <li><a href="/news/spark-3-3-4-released.html">Spark 3.3.4 released</a>
+            <span class="small">(Dec 16, 2023)</span></li>
+          
+          <li><a href="/news/spark-3-4-2-released.html">Spark 3.4.2 released</a>
+            <span class="small">(Nov 30, 2023)</span></li>
+          
+          <li><a href="/news/spark-3-5-0-released.html">Spark 3.5.0 released</a>
+            <span class="small">(Sep 13, 2023)</span></li>
+          
+        </ul>
+        <p class="small" style="text-align: right;"><a href="/news/index.html">Archive</a></p>
+      </div>
+      <div style="text-align:center; margin-bottom: 20px;">
+        <a href="https://www.apache.org/events/current-event.html">
+          <img src="https://www.apache.org/events/current-event-234x60.png" style="max-width: 100%;"/>
+        </a>
+      </div>
+      <div class="hidden-xs hidden-sm">
+        <a href="/downloads.html" class="btn btn-cta btn-lg d-grid" style="margin-bottom: 30px;">
+          Download Spark
+        </a>
+        <p style="font-size: 16px; font-weight: 500; color: #555;">
+          Built-in Libraries:
+        </p>
+        <ul class="list-none">
+          <li><a href="/sql/">SQL and DataFrames</a></li>
+          <li><a href="/streaming/">Spark Streaming</a></li>
+          <li><a href="/mllib/">MLlib (machine learning)</a></li>
+          <li><a href="/graphx/">GraphX (graph)</a></li>
+        </ul>
+        <a href="/third-party-projects.html">Third-Party Projects</a>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <footer class="small">
+    <hr>
+    Apache Spark, Spark, Apache, the Apache feather logo, and the Apache Spark project logo are either registered
+    trademarks or trademarks of The Apache Software Foundation in the United States and other countries.
+    See guidance on use of Apache Spark <a href="/trademarks.html">trademarks</a>.
+    All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+    Copyright &copy; 2018 The Apache Software Foundation, Licensed under the
+    <a href="https://www.apache.org/licenses/">Apache License, Version 2.0</a>.
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="/js/lang-tabs.js"></script>
+<script src="/js/downloads.js"></script>
+</body>
+</html>
