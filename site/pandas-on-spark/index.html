@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+     pandas API on Spark | Apache Spark
+    
+  </title>
+
+  
+
+  
+    <meta name="description" content="The pandas API on Spark offers the familiarity of pandas with the power of Spark.">
+  
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+  <link href="/css/custom.css" rel="stylesheet">
+  <!-- Code highlighter CSS -->
+  <link href="/css/pygments-default.css" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(["disableCookies"]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://analytics.apache.org/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '40']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body class="global">
+<nav class="navbar navbar-expand-lg navbar-dark p-0 px-4" style="background: #1D6890;">
+  <a class="navbar-brand" href="/">
+    <img src="/images/spark-logo-rev.svg" alt="" width="141" height="72">
+  </a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+          aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse col-md-12 col-lg-auto pt-4" id="navbarContent">
+
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/downloads.html">Download</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="libraries" role="button" data-bs-toggle="dropdown"
+           aria-expanded="false">
+          Libraries
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="libraries">
+          <li><a class="dropdown-item" href="/sql/">SQL and DataFrames</a></li>
+          <li><a class="dropdown-item" href="/spark-connect/">Spark Connect</a></li>
+          <li><a class="dropdown-item" href="/streaming/">Spark Streaming</a></li>
+          <li><a class="dropdown-item" href="/pandas-on-spark/">pandas on Spark</a></li>
+          <li><a class="dropdown-item" href="/mllib/">MLlib (machine learning)</a></li>
+          <li><a class="dropdown-item" href="/graphx/">GraphX (graph)</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="/third-party-projects.html">Third-Party Projects</a></li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="documentation" role="button" data-bs-toggle="dropdown"
+           aria-expanded="false">
+          Documentation
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="documentation">
+          <li><a class="dropdown-item" href="/docs/latest/">Latest Release</a></li>
+          <li><a class="dropdown-item" href="/documentation.html">Older Versions and Other Resources</a></li>
+          <li><a class="dropdown-item" href="/faq.html">Frequently Asked Questions</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/examples.html">Examples</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="community" role="button" data-bs-toggle="dropdown"
+           aria-expanded="false">
+          Community
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="community">
+          <li><a class="dropdown-item" href="/community.html">Mailing Lists &amp; Resources</a></li>
+          <li><a class="dropdown-item" href="/contributing.html">Contributing to Spark</a></li>
+          <li><a class="dropdown-item" href="/improvement-proposals.html">Improvement Proposals (SPIP)</a>
+          </li>
+          <li><a class="dropdown-item" href="https://issues.apache.org/jira/browse/SPARK">Issue Tracker</a>
+          </li>
+          <li><a class="dropdown-item" href="/powered-by.html">Powered By</a></li>
+          <li><a class="dropdown-item" href="/committers.html">Project Committers</a></li>
+          <li><a class="dropdown-item" href="/history.html">Project History</a></li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="developers" role="button" data-bs-toggle="dropdown"
+           aria-expanded="false">
+          Developers
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="developers">
+          <li><a class="dropdown-item" href="/developer-tools.html">Useful Developer Tools</a></li>
+          <li><a class="dropdown-item" href="/versioning-policy.html">Versioning Policy</a></li>
+          <li><a class="dropdown-item" href="/release-process.html">Release Process</a></li>
+          <li><a class="dropdown-item" href="/security.html">Security</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="apacheFoundation" role="button"
+           data-bs-toggle="dropdown" aria-expanded="false">
+          Apache Software Foundation
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="apacheFoundation">
+          <li><a class="dropdown-item" href="https://www.apache.org/">Apache Homepage</a></li>
+          <li><a class="dropdown-item" href="https://www.apache.org/licenses/">License</a></li>
+          <li><a class="dropdown-item"
+                 href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+          <li><a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+          <li><a class="dropdown-item" href="https://www.apache.org/security/">Security</a></li>
+          <li><a class="dropdown-item" href="https://www.apache.org/events/current-event">Event</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-12 col-md-9">
+      <h1 id="pandas-api-on-spark">pandas API on Spark</h1>
+
+<p>This page describes the advantages of the pandas API on Spark (“pandas on Spark”) and when you should use it instead of pandas (or in conjunction with pandas).</p>
+
+<p>pandas on Spark can be much faster than pandas and offers syntax that is familiar to pandas users.  It offers the power of Spark with the familiarity of pandas.</p>
+
+<p>Here are the main advantages of pandas on Spark:</p>
+
+<ul>
+  <li>Faster query execution on single-machine workloads (because pandas on Spark uses all available cores, processes queries in parallel, and optimizes queries)</li>
+  <li>pandas on Spark is scalable to multiple machines in a cluster and can process big data</li>
+  <li>pandas on Spark allows queries to be run on larger than memory datasets</li>
+  <li>pandas on Spark provides familiar syntax for pandas users</li>
+</ul>
+
+<p>pandas has many limitations:</p>
+
+<ul>
+  <li>pandas must load all data into memory before running a query which can be slow</li>
+  <li>pandas cannot process datasets that are larger than the available memory on a single machine (because all data must be loaded into memory)</li>
+  <li>pandas computations are run on a single core and don&#8217;t leverage all available cores of a single machine</li>
+  <li>pandas computations cannot be scaled out to multiple machines</li>
+  <li>pandas doesn&#8217;t have a query optimizer, so users have to manually code optimizations or suffer from slow code</li>
+</ul>
+
+<p>Let&#8217;s look at some simple examples to get a better understanding of how pandas on Spark overcomes the limitations of pandas.  We’ll also investigate the limitations of pandas on Spark.</p>
+
+<p>At the end of this page, you will see how you can use both pandas and pandas on Spark in conjunction.  It’s not an either/or decision - in many situations using both is a great option.</p>
+
+<h2 id="pandas-on-spark-example">pandas on Spark example</h2>
+
+<p>This section demonstrates how pandas on Spark can run a query on a single file on localhost faster than pandas.  pandas on Spark isn’t necessarily faster for all queries, but this example shows when it provides a nice speed-up.</p>
+
+<p>Suppose you have a Parquet file with 9 columns and 1 billion rows of data.  Here are the first three rows of the file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+-------+-------+--------------+-------+-------+--------+------+------+---------+
+| id1   | id2   | id3          |   id4 |   id5 |    id6 |   v1 |   v2 |      v3 |
+|-------+-------+--------------+-------+-------+--------+------+------+---------|
+| id016 | id046 | id0000109363 |    88 |    13 | 146094 |    4 |    6 | 18.8377 |
+| id039 | id087 | id0000466766 |    14 |    30 | 111330 |    4 |   14 | 46.7973 |
+| id047 | id098 | id0000307804 |    85 |    23 | 187639 |    3 |    5 | 47.5773 |
++-------+-------+--------------+-------+-------+--------+------+------+---------+
+</code></pre></div></div>
+
+<p>Here is how you can use pandas on Spark to read the file and run a group by aggregation.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pyspark.pandas</span> <span class="k">as</span> <span class="n">ps</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">ps</span><span class="p">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s">"G1_1e9_1e2_0_0.parquet"</span><span class="p">)[</span>
+    <span class="p">[</span><span class="s">"id1"</span><span class="p">,</span> <span class="s">"id2"</span><span class="p">,</span> <span class="s">"v3"</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="n">df</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="s">"id1 &gt; 'id098'"</span><span class="p">).</span><span class="n">groupby</span><span class="p">(</span><span class="s">"id2"</span><span class="p">).</span><span class="nb">sum</span><span class="p">().</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This query runs in 62 seconds when executed on a 2020 M1 Macbook with 64 GB of RAM with Spark 3.5.0.</p>
+
+<p>Let&#8217;s compare this with unoptimized pandas code.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s">"G1_1e9_1e2_0_0.parquet"</span><span class="p">)[</span>
+    <span class="p">[</span><span class="s">"id1"</span><span class="p">,</span> <span class="s">"id2"</span><span class="p">,</span> <span class="s">"v3"</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="n">df</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="s">"id1 &gt; 'id098'"</span><span class="p">).</span><span class="n">groupby</span><span class="p">(</span><span class="s">"id2"</span><span class="p">).</span><span class="nb">sum</span><span class="p">().</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This query errors out because the machine with 64GB of RAM does not have enough space to store 1 billion rows of data in memory.</p>
+
+<p>Let’s manually add some pandas optimizations to make the query run:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_parquet</span><span class="p">(</span>
+    <span class="s">"G1_1e9_1e2_0_0.parquet"</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">"id1"</span><span class="p">,</span> <span class="s">"id2"</span><span class="p">,</span> <span class="s">"v3"</span><span class="p">],</span>
+    <span class="n">filters</span><span class="o">=</span><span class="p">[(</span><span class="s">"id1"</span><span class="p">,</span> <span class="s">"&gt;"</span><span class="p">,</span> <span class="s">"id098"</span><span class="p">)],</span>
+    <span class="n">engine</span><span class="o">=</span><span class="s">"pyarrow"</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">df</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="s">"id1 &gt; 'id098'"</span><span class="p">).</span><span class="n">groupby</span><span class="p">(</span><span class="s">"id2"</span><span class="p">).</span><span class="nb">sum</span><span class="p">().</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This query runs in 275 seconds with pandas 2.2.0.</p>
+
+<p>Coding these optimizations manually with pandas can potentially give the wrong results.  Here’s an example of a group by query that’s correct, but with a row-group filtering predicate that’s wrong:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_parquet</span><span class="p">(</span>
+    <span class="s">"G1_1e9_1e2_0_0.parquet"</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">"id1"</span><span class="p">,</span> <span class="s">"id2"</span><span class="p">,</span> <span class="s">"v3"</span><span class="p">],</span>
+    <span class="n">filters</span><span class="o">=</span><span class="p">[(</span><span class="s">"id1"</span><span class="p">,</span> <span class="s">"=="</span><span class="p">,</span> <span class="s">"id001"</span><span class="p">)],</span>
+    <span class="n">engine</span><span class="o">=</span><span class="s">"pyarrow"</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">df</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="s">"id1 &gt; 'id098'"</span><span class="p">).</span><span class="n">groupby</span><span class="p">(</span><span class="s">"id2"</span><span class="p">).</span><span class="nb">sum</span><span class="p">().</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This returns the wrong result, even though the group by aggregation logic is right!</p>
+
+<p>With pandas, you need to manually apply column pruning and row-group filtering when reading a Parquet file.  With pandas on Spark, the Spark optimizer automatically applies these query enhancements, so you do not need to type them manually.</p>
+
+<p>Let&#8217;s investigate the advantages of pandas on Spark in more detail.</p>
+
+<h2 id="advantages-of-pandas-on-spark">Advantages of pandas on Spark</h2>
+
+<p>Let&#8217;s recap the advantages of pandas on Spark:</p>
+
+<p><strong>Faster query execution</strong></p>
+
+<p>pandas on Spark can execute queries faster than pandas because it uses all the available cores to parallelize computations and optimizes queries before running them to allow for efficient execution.</p>
+
+<p>pandas computations only run on a single core.</p>
+
+<p><strong>Scalable to larger-than-memory datasets</strong></p>
+
+<p>pandas loads data in memory before running queries, so it can only query datasets that fit into memory.</p>
+
+<p>Spark can query datasets that are larger than memory by streaming the data and incrementally running computations.</p>
+
+<p>pandas is notorious for erroring out when dataset sizes grow and Spark doesn&#8217;t have this limitation.</p>
+
+<p><strong>Runnable on a cluster of many machines</strong></p>
+
+<p>Spark can be run on a single machine or distributed to many machines in a cluster.</p>
+
+<p>When Spark is run on a single machine, the computations are run on all available cores.  This is often faster than pandas which only runs computations on a single core.</p>
+
+<p>Scaling computations on multiple machines is great for when you want to run computations on larger data sets or simply access more RAM/cores so the queries run faster.</p>
+
+<p><strong>Familiar syntax for pandas users</strong></p>
+
+<p>pandas on Spark was designed to provide familiar syntax for pandas users.</p>
+
+<p>The familiar syntax is the whole point - pandas on Spark provides the power of Spark with the same syntax that pandas users are accustomed to.</p>
+
+<p><strong>Provides access to Spark&#8217;s battle-tested query optimizer</strong></p>
+
+<p>pandas on Spark computations are optimized by Spark’s Catalyst optimizer before they&#8217;re executed.</p>
+
+<p>These optimizations simplify queries and add optimizations.</p>
+
+<p>Earlier in this post, we saw how Spark automatically adds the column pruning/row group filtering optimizations when reading Parquet files for example.  pandas doesn&#8217;t have a query optimizer, so you need to add these optimizations yourself.  Manually adding optimizations is tedious and error-prone.  If you don&#8217;t manually apply the right optimizations, your query will return the wrong result.</p>
+
+<h2 id="limitations-of-pandas-on-spark">Limitations of pandas on Spark</h2>
+
+<p>pandas on Spark doesn&#8217;t support all the APIs that pandas supports for two reasons:</p>
+
+<ul>
+  <li>
+    <p>some features haven&#8217;t been added to pandas on Spark yet</p>
+  </li>
+  <li>
+    <p>some pandas features don&#8217;t make sense with Spark&#8217;s distributed, parallel execution model</p>
+  </li>
+</ul>
+
+<p>Spark breaks up DataFrames into multiple chunks so they can be processed in parallel, so certain pandas operations don&#8217;t transition well to Spark&#8217;s execution model.</p>
+
+<h2 id="using-pandas-on-spark-in-conjunction-with-regular-pandas">Using pandas on Spark in conjunction with regular pandas</h2>
+
+<p>It’s often useful to use pandas on Spark and pandas to get the best of both worlds.</p>
+
+<p>Suppose you have a large dataset that you clean and aggregate into a smaller dataset that’s passed into a scikit-learn machine learning model.</p>
+
+<p>You can clean and aggregate the dataset with pandas on Spark to take advantage of fast query times and parallel execution.  Once the dataset is processed, you can convert it to a pandas DataFrame with <code class="language-plaintext highlighter-rouge">to_pandas()</code> and then run the machine learning model with scikit-learn.  This approach works well if the dataset can be reduced enough to fit in a pandas DataFrame.</p>
+
+<h2 id="the-pandas-on-spark-query-execution-model-is-different">The pandas on Spark query execution model is different</h2>
+
+<p>pandas on Spark executes queries completely differently than pandas.</p>
+
+<p>pandas on Spark uses lazy evaluation.  It converts the query to an unresolved logical plan, optimizes it with Spark, and only runs computations when results are requested.</p>
+
+<p>pandas uses eager evaluation.  It loads all the data into memory and executes operations immediately when they are invoked.  pandas does not apply query optimization and all the data must be loaded into memory before the query is executed.</p>
+
+<p>When comparing pandas on Spark and pandas, you must be careful to factor in how much time it takes to load the data into memory and how much time it takes to run the query.  A lot of datasets take a long time to load into pandas.</p>
+
+<p>You can also load data into memory with pandas on Spark, but this is often considered an anti-pattern.  A dataset that’s loaded into memory won’t be updated if the data in storage changes (via an append, merge, or deletion).  Persisting a Spark DataFrame is wise in certain situations to speed up query times, but must be used carefully because it can cause incorrect query results.</p>
+
+<h2 id="how-pandas-on-spark-and-pyspark-differ">How pandas on Spark and PySpark differ</h2>
+
+<p>pandas on Spark and PySpark both take queries, convert them to unresolved logical plans, and then execute them with Spark.</p>
+
+<p>PySpark and pandas on Spark both have similar query execution models.  Converting a query to an unresolved logical plan is relatively quick.  Optimizing the query and executing it takes much more time.  So PySpark and pandas on Spark should have similar performance.</p>
+
+<p>The main difference between pandas on Spark and PySpark is just the syntax.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>pandas on Spark is a great alternative for pandas users who would like to run their queries faster and want to leverage Spark’s optimizer rather than writing their own optimizations.</p>
+
+<p>pandas on Spark uses syntax that’s familiar to pandas users, so it’s easy to learn.</p>
+
+<p>pandas on Spark is also a great technology to be used in conjunction with pandas.  You can use the big-data and performant processing capabilities of pandas on Spark to process datasets before they’re converted into pandas DataFrames that are compatible with other technologies.</p>
+
+<p>Check out <a href="https://spark.apache.org/docs/latest/api/python/user_guide/pandas_on_spark/index.html">the docs</a> to learn more about how to use pandas on Spark.</p>
+
+    </div>
+    <div class="col-12 col-md-3">
+      <div class="news" style="margin-bottom: 20px;">
+        <h5>Latest News</h5>
+        <ul class="list-unstyled">
+          
+          <li><a href="/news/spark-3-5-1-released.html">Spark 3.5.1 released</a>
+            <span class="small">(Feb 23, 2024)</span></li>
+          
+          <li><a href="/news/spark-3-3-4-released.html">Spark 3.3.4 released</a>
+            <span class="small">(Dec 16, 2023)</span></li>
+          
+          <li><a href="/news/spark-3-4-2-released.html">Spark 3.4.2 released</a>
+            <span class="small">(Nov 30, 2023)</span></li>
+          
+          <li><a href="/news/spark-3-5-0-released.html">Spark 3.5.0 released</a>
+            <span class="small">(Sep 13, 2023)</span></li>
+          
+        </ul>
+        <p class="small" style="text-align: right;"><a href="/news/index.html">Archive</a></p>
+      </div>
+      <div style="text-align:center; margin-bottom: 20px;">
+        <a href="https://www.apache.org/events/current-event.html">
+          <img src="https://www.apache.org/events/current-event-234x60.png" style="max-width: 100%;"/>
+        </a>
+      </div>
+      <div class="hidden-xs hidden-sm">
+        <a href="/downloads.html" class="btn btn-cta btn-lg d-grid" style="margin-bottom: 30px;">
+          Download Spark
+        </a>
+        <p style="font-size: 16px; font-weight: 500; color: #555;">
+          Built-in Libraries:
+        </p>
+        <ul class="list-none">
+          <li><a href="/sql/">SQL and DataFrames</a></li>
+          <li><a href="/streaming/">Spark Streaming</a></li>
+          <li><a href="/mllib/">MLlib (machine learning)</a></li>
+          <li><a href="/graphx/">GraphX (graph)</a></li>
+        </ul>
+        <a href="/third-party-projects.html">Third-Party Projects</a>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <footer class="small">
+    <hr>
+    Apache Spark, Spark, Apache, the Apache feather logo, and the Apache Spark project logo are either registered
+    trademarks or trademarks of The Apache Software Foundation in the United States and other countries.
+    See guidance on use of Apache Spark <a href="/trademarks.html">trademarks</a>.
+    All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+    Copyright &copy; 2018 The Apache Software Foundation, Licensed under the
+    <a href="https://www.apache.org/licenses/">Apache License, Version 2.0</a>.
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="/js/lang-tabs.js"></script>
+<script src="/js/downloads.js"></script>
+</body>
+</html>
