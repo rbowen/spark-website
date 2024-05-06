@@ -10,20 +10,20 @@ navigation:
 
 |Name|Organization|
 |----|------------|
-|Sameer Agarwal|Facebook|
+|Sameer Agarwal|Deductive AI|
 |Michael Armbrust|Databricks|
 |Dilip Biswal|Adobe|
-|Ryan Blue|Netflix|
+|Ryan Blue|Tabular|
 |Joseph Bradley|Databricks|
 |Matthew Cheah|Palantir|
-|Felix Cheung|SafeGraph|
+|Felix Cheung|NVIDIA|
 |Mosharaf Chowdhury|University of Michigan, Ann Arbor|
 |Bryan Cutler|IBM|
 |Jason Dai|Intel|
 |Tathagata Das|Databricks|
-|Ankur Dave|UC Berkeley|
+|Ankur Dave|Databricks|
 |Aaron Davidson|Databricks|
-|Thomas Dudziak|Facebook|
+|Thomas Dudziak|Meta|
 |Erik Erlandson|Red Hat|
 |Robert Evans|NVIDIA|
 |Wenchen Fan|Databricks|
@@ -34,7 +34,7 @@ navigation:
 |Thomas Graves|NVIDIA|
 |Stephen Haberman|LinkedIn|
 |Mark Hamstra|ClearStory Data|
-|Seth Hendrickson|Cloudera|
+|Seth Hendrickson|Stripe|
 |Herman van Hovell|Databricks|
 |Liang-Chi Hsieh|Apple|
 |Yin Huai|Databricks|
@@ -43,7 +43,7 @@ navigation:
 |Kazuaki Ishizaki|IBM|
 |Xingbo Jiang|Databricks|
 |Yikun Jiang|Huawei|
-|Holden Karau|Apple|
+|Holden Karau|Netflix|
 |Shane Knapp|UC Berkeley|
 |Cody Koeninger|Nexstar Digital|
 |Andy Konwinski|Databricks|
@@ -61,23 +61,23 @@ navigation:
 |Xiangrui Meng|Databricks|
 |Xinrong Meng|Databricks|
 |Mridul Muralidharan|LinkedIn|
-|Andrew Or|Princeton University|
+|Andrew Or|Facebook|
 |Kay Ousterhout|LightStep|
 |Sean Owen|Databricks|
-|Tejas Patil|Facebook|
-|Nick Pentreath|IBM|
+|Tejas Patil|Meta|
+|Nick Pentreath|Automattic|
 |Attila Zsolt Piros|Cloudera|
-|Anirudh Ramanathan|Rockset|
+|Anirudh Ramanathan|Signadot|
 |Imran Rashid|Cloudera|
 |Charles Reiss|University of Virginia|
-|Josh Rosen|Stripe|
-|Sandy Ryza|Remix|
+|Josh Rosen|Databricks|
+|Sandy Ryza|Dagster|
 |Kousuke Saruta|NTT Data|
 |Saisai Shao|Datastrato|
 |Prashant Sharma|IBM|
 |Gabor Somogyi|Apple|
-|Ram Sriharsha|Databricks|
-|Chao Sun|Apple|
+|Ram Sriharsha|Pinecone|
+|Chao Sun|OpenAI|
 |Maciej Szymkiewicz||
 |Jose Torres|Databricks|
 |Peter Toth|Cloudera|
