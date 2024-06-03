@@ -1,0 +1,194 @@
+﻿..  Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+..    http://www.apache.org/licenses/LICENSE-2.0
+
+..  Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+
+
+LogisticRegression
+====================================================
+
+.. currentmodule:: pyspark.ml.connect.classification
+
+.. autoclass:: LogisticRegression
+
+    
+      
+    
+
+    
+    
+
+    .. rubric:: Methods
+
+    .. autosummary::
+    
+       ~LogisticRegression.clear
+       ~LogisticRegression.copy
+       ~LogisticRegression.explainParam
+       ~LogisticRegression.explainParams
+       ~LogisticRegression.extractParamMap
+       ~LogisticRegression.fit
+       ~LogisticRegression.getBatchSize
+       ~LogisticRegression.getFeaturesCol
+       ~LogisticRegression.getFitIntercept
+       ~LogisticRegression.getLabelCol
+       ~LogisticRegression.getLearningRate
+       ~LogisticRegression.getMaxIter
+       ~LogisticRegression.getMomentum
+       ~LogisticRegression.getNumTrainWorkers
+       ~LogisticRegression.getOrDefault
+       ~LogisticRegression.getParam
+       ~LogisticRegression.getPredictionCol
+       ~LogisticRegression.getProbabilityCol
+       ~LogisticRegression.getSeed
+       ~LogisticRegression.getTol
+       ~LogisticRegression.getWeightCol
+       ~LogisticRegression.hasDefault
+       ~LogisticRegression.hasParam
+       ~LogisticRegression.isDefined
+       ~LogisticRegression.isSet
+       ~LogisticRegression.load
+       ~LogisticRegression.loadFromLocal
+       ~LogisticRegression.save
+       ~LogisticRegression.saveToLocal
+       ~LogisticRegression.set
+       ~LogisticRegression.setFeaturesCol
+       ~LogisticRegression.setLabelCol
+       ~LogisticRegression.setPredictionCol
+
+    
+    
+
+    
+    
+
+    .. rubric:: Attributes
+
+    .. autosummary::
+    
+        
+           ~LogisticRegression.batchSize
+        
+        
+           ~LogisticRegression.featuresCol
+        
+        
+           ~LogisticRegression.fitIntercept
+        
+        
+           ~LogisticRegression.labelCol
+        
+        
+           ~LogisticRegression.learningRate
+        
+        
+           ~LogisticRegression.maxIter
+        
+        
+           ~LogisticRegression.momentum
+        
+        
+           ~LogisticRegression.numTrainWorkers
+        
+        
+           ~LogisticRegression.params
+        
+        
+           ~LogisticRegression.predictionCol
+        
+        
+           ~LogisticRegression.probabilityCol
+        
+        
+           ~LogisticRegression.seed
+        
+        
+           ~LogisticRegression.tol
+        
+        
+           ~LogisticRegression.weightCol
+        
+        
+
+    
+    
+
+    
+    
+
+    .. rubric:: Methods Documentation
+
+    
+    .. automethod:: clear
+    .. automethod:: copy
+    .. automethod:: explainParam
+    .. automethod:: explainParams
+    .. automethod:: extractParamMap
+    .. automethod:: fit
+    .. automethod:: getBatchSize
+    .. automethod:: getFeaturesCol
+    .. automethod:: getFitIntercept
+    .. automethod:: getLabelCol
+    .. automethod:: getLearningRate
+    .. automethod:: getMaxIter
+    .. automethod:: getMomentum
+    .. automethod:: getNumTrainWorkers
+    .. automethod:: getOrDefault
+    .. automethod:: getParam
+    .. automethod:: getPredictionCol
+    .. automethod:: getProbabilityCol
+    .. automethod:: getSeed
+    .. automethod:: getTol
+    .. automethod:: getWeightCol
+    .. automethod:: hasDefault
+    .. automethod:: hasParam
+    .. automethod:: isDefined
+    .. automethod:: isSet
+    .. automethod:: load
+    .. automethod:: loadFromLocal
+    .. automethod:: save
+    .. automethod:: saveToLocal
+    .. automethod:: set
+    .. automethod:: setFeaturesCol
+    .. automethod:: setLabelCol
+    .. automethod:: setPredictionCol
+
+    
+    
+
+    
+    
+
+    .. rubric:: Attributes Documentation
+
+    
+    .. autoattribute:: batchSize
+    .. autoattribute:: featuresCol
+    .. autoattribute:: fitIntercept
+    .. autoattribute:: labelCol
+    .. autoattribute:: learningRate
+    .. autoattribute:: maxIter
+    .. autoattribute:: momentum
+    .. autoattribute:: numTrainWorkers
+    .. autoattribute:: params
+    .. autoattribute:: predictionCol
+    .. autoattribute:: probabilityCol
+    .. autoattribute:: seed
+    .. autoattribute:: tol
+    .. autoattribute:: weightCol
+    .. autoattribute:: uid
+
+    
+    

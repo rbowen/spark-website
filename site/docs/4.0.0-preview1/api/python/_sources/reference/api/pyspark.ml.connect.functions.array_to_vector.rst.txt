@@ -1,0 +1,6 @@
+﻿pyspark.ml.connect.functions.array\_to\_vector
+==============================================
+
+.. currentmodule:: pyspark.ml.connect.functions
+
+.. autofunction:: array_to_vector
