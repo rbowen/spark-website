@@ -18,6 +18,7 @@ This page tracks external software projects that supplement Apache Spark and add
 - [python-deequ](https://github.com/awslabs/python-deequ) - Measures data quality in large datasets
 - [datahub](https://github.com/datahub-project/datahub) - Metadata platform for the modern data stack
 - [dbt-spark](https://github.com/dbt-labs/dbt-spark) - Enables dbt to work with Apache Spark
+- [Hamilton](https://github.com/DAGWorks-Inc/hamilton) - Enables one to declaratively describe PySpark transformations that helps keep code testable, modular, and logically visualizable. 
 
 ## Connectors
 
