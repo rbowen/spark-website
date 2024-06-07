@@ -83,6 +83,7 @@ navigation:
 <p>Documentation for preview releases:</p>
 
 <ul>
+  <li><a href="{{site.baseurl}}/docs/4.0.0-preview1/">Spark 4.0.0 preview1</a></li>
   <li><a href="{{site.baseurl}}/docs/3.0.0-preview2/">Spark 3.0.0 preview2</a></li>
   <li><a href="{{site.baseurl}}/docs/3.0.0-preview/">Spark 3.0.0 preview</a></li>
   <li><a href="{{site.baseurl}}/docs/2.0.0-preview/">Spark 2.0.0 preview</a></li>
