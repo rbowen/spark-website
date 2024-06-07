@@ -362,6 +362,39 @@ error messages.</p>
 
 <p>See the <a href="/error-message-guidelines.html">error message guidelines</a> for more details.</p>
 
+<h3>Behavior changes</h3>
+
+<p>Behavior changes are user-visible functional changes in a new release via public APIs. The term &#8216;user&#8217; here refers
+not only to those who write queries and/or develop Spark plugins, but also to those who deploy and/or manage Spark
+clusters. New features and bug fixes, such as correcting query results or schemas and failing unsupported queries
+that previously returned incorrect results, are considered behavior changes. However, performance improvements,
+code refactoring, and changes to unreleased APIs/features are not.</p>
+
+<p>Everyone makes mistakes, including Spark developers. We will continue to fix defects in Spark as they arise.
+However, it is important to communicate these behavior changes so that Spark users can be prepared for version
+upgrades. If a PR introduces behavior changes, it should be explicitly mentioned in the PR description. If the
+behavior change may require additional user actions, this should be highlighted in the migration guide
+(docs/sql-migration-guide.md for the SQL component and similar files for other components). Where possible,
+provide options to restore the previous behavior and mention these options in the error message. Some examples include:</p>
+
+<ul>
+  <li>Bug fixes that change query results. Users may need to backfill to correct existing data and must be informed about
+these correctness fixes.</li>
+  <li>Bug fixes that change the query schema. Users may need to update the schema of tables in their data pipelines and must
+be informed about these changes.</li>
+  <li>Removing or renaming Spark configurations.</li>
+  <li>Renaming error classes or conditions.</li>
+  <li>Any non-additive changes to the public Python/SQL/Scala/Java/R APIs (including developer APIs), such as renaming
+functions, removing parameters, adding parameters, renaming parameters, or changing parameter default values. These
+changes should generally be avoided, or if necessary, done in a binary-compatible manner by deprecating the old function
+and introducing a new one instead.</li>
+  <li>Any non-additive changes to the way Spark should be deployed and managed: renaming argument names in deployment scripts,
+updates to the REST API, changes to the method of loading configuration files, etc.</li>
+</ul>
+
+<p>This list is not meant to be comprehensive. Anyone reviewing a PR can ask the PR author to add to the migration guide
+if they believe the change is risky and may disrupt users during an upgrade.</p>
+
 <h3>Code review criteria</h3>
 
 <p>Before considering how to contribute code, it&#8217;s useful to understand how code is reviewed, 
