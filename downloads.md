@@ -41,9 +41,11 @@ Spark artifacts are [hosted in Maven Central](https://search.maven.org/search?q=
 <a href="https://pypi.org/project/pyspark/">PySpark</a> is now available in pypi. To install just run `pip install pyspark`.
 
 
-### Convenience Docker Container Images
+### Installing with Docker
 
-[Spark Docker Container images are available from DockerHub](https://hub.docker.com/r/apache/spark-py/tags), these images contain non-ASF software and may be subject to different license terms.
+Spark docker images are available from Dockerhub under the accounts of both [The Apache Software Foundation](https://hub.docker.com/r/apache/spark/) and [Official Images](https://hub.docker.com/_/spark).
+
+Note that, these images contain non-ASF software and may be subject to different license terms. Please check their [Dockerfiles](https://github.com/apache/spark-docker) to verify whether to verify whether they are compatible with your deployment.
 
 ### Release notes for stable releases
 
