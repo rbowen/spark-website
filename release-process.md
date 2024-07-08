@@ -327,6 +327,7 @@ Next, update the rest of the Spark website. See how the previous releases are do
 * update `_layouts/global.html` if the new release is the latest one
 * update `documentation.md` to add link to the docs for the new release
 * add the new release to `js/downloads.js` (attention to the order of releases)
+* add the new release to `site/static/versions.json` (attention to the order of releases) [for `spark version drop down` of the `PySpark` docs]
 * check `security.md` for anything to update
 
 ```
