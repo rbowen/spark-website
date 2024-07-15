@@ -32,6 +32,7 @@ navigation:
 |Jiaan Geng|DataCyber|
 |Joseph Gonzalez|UC Berkeley|
 |Thomas Graves|NVIDIA|
+|Martin Grund|Databricks|
 |Stephen Haberman|LinkedIn|
 |Mark Hamstra|ClearStory Data|
 |Seth Hendrickson|Stripe|
