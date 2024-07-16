@@ -128,6 +128,14 @@ assessing quality. Contributors to these areas will face more review of their ch
 community interactions. They should also be active on the dev and user list and help mentor 
 newer contributors and users. In design discussions, committers should maintain a professional 
 and diplomatic approach, even in the face of disagreement.
+4. [The Apache Way](https://www.apache.org/theapacheway/): Committers should follow and
+understand [The Apache Way](https://www.apache.org/theapacheway/) such as
+[Lazy Consensus](https://community.apache.org/committers/decisionMaking.html#lazy-consensus).
+[Apache projects are managed independently](https://community.apache.org/projectIndependence.html#apache-projects-are-managed-independently).
+
+  > A community that obviously favors one specific vendor in some exclusive way will often
+  > discourage new contributors from competing vendors, and this would be an issue for the
+  > long-term health of the project.
 
 The type and level of contributions considered may vary by project area -- for example, we 
 greatly encourage contributors who want to work on mainly the documentation, or mainly on 
