@@ -50,6 +50,7 @@ navigation:
 |Andy Konwinski|Databricks|
 |Hyukjin Kwon|Databricks|
 |Ryan LeCompte|Quantifind|
+|Haejoon Lee|Databricks|
 |Haoyuan Li|Alluxio|
 |Xiao Li|Databricks|
 |Yinan Li|Google|
