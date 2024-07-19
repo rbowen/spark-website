@@ -7,27 +7,41 @@ navigation:
   show: true
 ---
 
-<h2>Preparing Spark releases</h2>
-
-<h3>Background</h3>
+<h1>Preparing Spark releases</h1>
 
 The release manager role in Spark means you are responsible for a few different things:
 
-1. Preparing your setup
-1. Preparing for release candidates:
-    1. cutting a release branch
-    1. informing the community of timing
-    1. working with component leads to clean up JIRA
-    1. making code changes in that branch with necessary version updates
-1. Running the voting process for a release:
-    1. creating release candidates using automated tooling
-    1. calling votes and triaging issues
-1. Finalizing and posting a release:
-    1. updating the Spark website
-    1. writing release notes
-    1. announcing the release
+- [Preparing your setup](#preparing-your-setup)
+  - [Preparing gpg key](#preparing-gpg-key)
+    - [Generate key](#generate-key)
+    - [Upload key](#upload-key)
+    - [Update KEYS file with your code signing key](#update-keys-file-with-your-code-signing-key)
+  - [Installing Docker](#installing-docker)
+- [Preparing for release candidates](#preparing-for-release-candidates)
+  - [Cutting a release candidate](#cutting-a-release-candidate)
+  - Informing the community of timing
+  - Working with component leads to clean up JIRA
+  - Making code changes in that branch with necessary version updates
+- Running the voting process for a release:
+  - [Creating release candidates using automated tooling](#creating-release-candidates-using-automated-tooling)
+  - [Triaging issues](https://s.apache.org/spark-jira-versions)
+  - [Call a vote on the release candidate](#call-a-vote-on-the-release-candidate)
+- [Finalizing and posting a release](#finalize-the-release)
+  - [Upload to Apache release directory](#upload-to-apache-release-directory)
+  - [Upload to PyPI](#upload-to-pypi)
+  - [Publish to CRAN](#publish-to-cran)
+  - [Remove RC artifacts from repositories](#remove-rc-artifacts-from-repositories)
+  - [Remove old releases from Mirror Network](#remove-old-releases-from-mirror-network)
+  - [Update the Apache Spark<sup>TM</sup> repository](#update-the-apache-spark-repository)
+  - [Update the configuration of Algolia Crawler](#update-the-configuration-of-algolia-crawler)
+  - [Update the Spark website](#update-the-spark-website)
+    - [Upload generated docs](#upload-generated-docs)
+    - [Update the rest of the Spark website](#update-the-rest-of-the-spark-website)
+  - [Create and upload Spark Docker Images](#create-and-upload-spark-docker-images)
+  - [Create an announcement](#create-an-announcement) 
 
-<h2>Preparing your setup</h2>
+<h2 id="preparing-your-setup">Preparing your setup</h2>
+
 
 If you are a new Release Manager, you can read up on the process from the followings:
 
@@ -35,11 +49,11 @@ If you are a new Release Manager, you can read up on the process from the follow
 - gpg for signing [https://www.apache.org/dev/openpgp.html](https://www.apache.org/dev/openpgp.html)
 - svn [https://infra.apache.org/version-control.html#svn](https://infra.apache.org/version-control.html#svn)
 
-<h3>Preparing gpg key</h3>
+<h3 id="preparing-gpg-key">Preparing gpg key</h3>
 
 You can skip this section if you have already uploaded your key.
 
-<h4>Generate key</h4>
+<h4 id="generate-key">Generate key</h4>
 
 Here's an example of gpg 2.0.12. If you use gpg version 1 series, please refer to <a href="https://www.apache.org/dev/openpgp.html#generate-key">generate-key</a> for details.
 
@@ -97,7 +111,7 @@ sub   rsa4096 2021-08-19 [E]
 
 Note that the last 8 digits (26A27D33) of the public key is the <a href="https://infra.apache.org/release-signing.html#key-id">key ID</a>.
 
-<h4>Upload key</h4>
+<h4 id="upload-key">Upload key</h4>
 
 After generating the public key, we should upload it to <a href="https://infra.apache.org/release-signing.html#keyserver">public key server</a>:
 
@@ -107,7 +121,7 @@ $ gpg --keyserver hkps://keys.openpgp.org --send-key 26A27D33
 
 Please refer to <a href="https://infra.apache.org/release-signing.html#keyserver-upload">keyserver-upload</a> for details.
 
-<h4>Update KEYS file with your code signing key</h4>
+<h4 id="update-keys-file-with-your-code-signing-key">Update KEYS file with your code signing key</h4>
 
 To get the code signing key (a.k.a ASCII-armored public key), run the command:
 
@@ -127,21 +141,24 @@ svn ci --username $ASF_USERNAME --password "$ASF_PASSWORD" -m"Update KEYS"
 If you want to do the release on another machine, you can transfer your secret key to that machine
 via the `gpg --export-secret-keys` and `gpg --import` commands.
 
-<h3>Installing Docker</h3>
+<p align="right"><a href="#top">Return to top</a></p>
+<h3 id="installing-docker">Installing Docker</h3>
 
 The scripts to create release candidates are run through docker. You need to install docker before running
 these scripts. Please make sure that you can run docker as non-root users. See
 <a href="https://docs.docker.com/install/linux/linux-postinstall/">https://docs.docker.com/install/linux/linux-postinstall</a>
 for more details.
 
-<h2>Preparing Spark for release</h2>
+<h2 id="preparing-for-release-candidates">Preparing for release candidates</h2>
+
 
 The main step towards preparing a release is to create a release branch. This is done via
 standard Git branching mechanism and should be announced to the community once the branch is
 created.
 
 
-<h3>Cutting a release candidate</h3>
+<p align="right"><a href="#top">Return to top</a></p>
+<h3 id="cutting-a-release-candidate">Cutting a release candidate</h3>
 
 If this is not the first RC, then make sure that the JIRA issues that have been solved since the
 last RC are marked as `Resolved` and has a `Target Versions` set to this release version.
@@ -160,6 +177,9 @@ Verify from `git log` whether they are actually making it in the new RC or not. 
 with `release-notes` label, and make sure they are documented in relevant migration guide for breaking
 changes or in the release news on the website later.
 
+<p align="right"><a href="#top">Return to top</a></p>
+<h3 id="creating-release-candidates-using-automated-tooling">Creating release candidates using automated tooling</h3>
+
 To cut a release candidate, there are 4 steps:
 1. Create a git tag for the release candidate.
 1. Package the release binaries & sources, and upload them to the Apache staging SVN repo.
@@ -170,7 +190,8 @@ The process of cutting a release candidate has been automated via the `dev/creat
 Run this script, type information it requires, and wait until it finishes. You can also do a single step via the `-s` option.
 Please run `do-release-docker.sh -h` and see more details.
 
-<h3>Call a vote on the release candidate</h3>
+<p align="right"><a href="#top">Return to top</a></p>
+<h3 id="call-a-vote-on-the-release-candidate">Call a vote on the release candidate</h3>
 
 The release voting takes place on the Apache Spark developers list (the PMC is voting).
 Look at past voting threads to see how this proceeds. The email should follow
@@ -184,7 +205,7 @@ Look at past voting threads to see how this proceeds. The email should follow
 Once the vote is done, you should also send out a summary email with the totals, with a subject
 that looks something like `[VOTE][RESULT] ...`.
 
-<h3>Finalize the release</h3>
+<h2 id="finalize-the-release">Finalize the release</h2>
 
 Note that `dev/create-release/do-release-docker.sh` script (`finalize` step ) automates most of the following steps **except** for:
 - Publish to CRAN
@@ -196,7 +217,8 @@ Note that `dev/create-release/do-release-docker.sh` script (`finalize` step ) au
 
 Please manually verify the result after each step.
 
-<h4>Upload to Apache release directory</h4>
+<p align="right"><a href="#top">Return to top</a></p>
+<h3 id="upload-to-apache-release-directory">Upload to Apache release directory</h3>
 
 **Be Careful!**
 
@@ -229,7 +251,8 @@ and the same under [https://repository.apache.org/content/groups/maven-staging-g
 (look for the correct release version). After some time this will be sync'd to <a href="https://search.maven.org/">Maven Central</a> automatically.
 
 
-<h4>Upload to PyPI</h4>
+<p align="right"><a href="#top">Return to top</a></p>
+<h3 id="upload-to-pypi">Upload to PyPI</h3>
 
 You'll need your own PyPI account. If you do not have a PyPI account that has access to the `pyspark` and `pyspark-connect` projects on PyPI, please ask the <a href="mailto:private@spark.apache.org">PMC</a> to grant permission for both.
 
@@ -244,13 +267,15 @@ is incorrect (e.g. http failure or other issue), you can rename the artifact to
 `pyspark-version.post0.tar.gz`, delete the old artifact from PyPI and re-upload.
 
 
-<h4>Publish to CRAN</h4>
+<p align="right"><a href="#top">Return to top</a></p>
+<h3 id="publish-to-cran">Publish to CRAN</h3>
 
 Publishing to CRAN is done using <a href="https://cran.r-project.org/submit.html">this form</a>.
 Since it requires further manual steps, please also contact the <a href="mailto:private@spark.apache.org">PMC</a>.
 
 
-<h4>Remove RC artifacts from repositories</h4>
+<p align="right"><a href="#top">Return to top</a></p>
+<h3 id="remove-rc-artifacts-from-repositories">Remove RC artifacts from repositories</h3>
 
 **NOTE! If you did not make a backup of docs for approved RC, this is the last time you can make a backup. This will be used to upload the docs to the website in next few step. Check out docs from svn before removing the directory.**
 
@@ -267,7 +292,8 @@ Make sure to also remove the unpublished staging repositories from the
 <a href="https://repository.apache.org/">Apache Nexus Repository Manager</a>.
 
 
-<h4>Remove old releases from Mirror Network</h4>
+<p align="right"><a href="#top">Return to top</a></p>
+<h3 id="remove-old-releases-from-mirror-network">Remove old releases from Mirror Network</h3>
 
 Spark always keeps the latest maintenance released of each branch in the mirror network.
 To delete older versions simply use svn rm:
@@ -280,7 +306,8 @@ You will also need to update `js/download.js` to indicate the release is not mir
 anymore, so that the correct links are generated on the site.
 
 
-<h4>Update the Spark Apache<span class="tm">&trade;</span> repository</h4>
+<p align="right"><a href="#top">Return to top</a></p>
+<h3 id="update-the-apache-spark-repository">Update the Spark Apache<span class="tm">&trade;</span> repository</h3>
 
 Check out the tagged commit for the release candidate that passed and apply the correct version tag.
 
@@ -289,12 +316,15 @@ $ git tag v1.1.1 v1.1.1-rc2 # the RC that passed
 $ git push apache v1.1.1
 ```
 
-<h4>Update the configuration of Algolia Crawler</h4>
+<p align="right"><a href="#top">Return to top</a></p>
+<h3 id="update-the-configuration-of-algolia-crawler">Update the configuration of Algolia Crawler</h3>
+
 The search box on the <a href="https://spark.apache.org/docs/latest/">Spark documentation website</a> leverages the <a href="https://www.algolia.com/products/search-and-discovery/crawler/">Algolia Crawler</a>. Before a release, please update the crawler configuration for Apache Spark with the new version on the <a href="https://crawler.algolia.com/">Algolia Crawler Admin Console</a>. If you don't have access to the configuration, contact <a href="mailto:gengliang@apache.org">Gengliang Wang</a> or <a href="mailto:lixiao@apache.org">Xiao Li</a> for help.
 
-<h4>Update the Spark website</h4>
+<p align="right"><a href="#top">Return to top</a></p>
+<h3 id="update-the-spark-website">Update the Spark website</h3>
 
-<h5>Upload generated docs</h5>
+<h4 id="upload-generated-docs">Upload generated docs</h4>
 
 The website repository is located at
 <a href="https://github.com/apache/spark-website">https://github.com/apache/spark-website</a>.
@@ -319,7 +349,7 @@ $ rm latest
 $ ln -s 1.1.1 latest
 ```
 
-<h5>Update the rest of the Spark website</h5>
+<h4 id="update-the-rest-of-the-spark-website">Update the rest of the Spark website</h4>
 
 Next, update the rest of the Spark website. See how the previous releases are documented
 (all the HTML file changes are generated by `jekyll`). In particular:
@@ -400,7 +430,8 @@ $ git shortlog v1.1.1 --grep "$EXPR" > contrib.txt
 $ git log v1.1.1 --grep "$expr" --shortstat --oneline | grep -B 1 -e "[3-9][0-9][0-9] insert" -e "[1-9][1-9][1-9][1-9] insert" | grep SPARK > large-patches.txt
 ```
 
-<h4>Create and upload Spark Docker Images</h4>
+<p align="right"><a href="#top">Return to top</a></p>
+<h3 id="create-and-upload-spark-docker-images">Create and upload Spark Docker Images</h3>
 
 The apache/spark-docker provides dockerfiles and Github Action for Spark Docker images publish.
 1. Upload Spark Dockerfiles to apache/spark-docker repository, please refer to [link](https://github.com/apache/spark-docker/pull/33).
@@ -410,10 +441,13 @@ The apache/spark-docker provides dockerfiles and Github Action for Spark Docker 
     3. Select "The Spark version of Spark image", click "Publish the image or not", select "apache" as target registry.
     4. Click "Run workflow" button to publish the image to Apache dockerhub.
 
-<h4>Create an announcement</h4>
+<p align="right"><a href="#top">Return to top</a></p>
+<h3 id="create-an-announcement">Create an announcement</h3>
 
 Once everything is working (website docs, website changes) create an announcement on the website
 and then send an e-mail to the mailing list with a subject that looks something like `[ANNOUNCE] ...`. To create an announcement, create a post under
 `news/_posts` and then run `bundle exec jekyll build`.
 
 Enjoy an adult beverage of your choice, and congratulations on making a Spark release.
+
+<p align="right"><a href="#top">Return to top</a></p>
