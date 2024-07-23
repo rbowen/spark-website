@@ -541,16 +541,18 @@ $ export RELEASE_TAG=v1.1.1
 $ export PREVIOUS_RELEASE_TAG=v1.1.0
 # Generate initial contributors list, likely with warnings
 $ ./generate-contributors.py
-# set JIRA_USERNAME, JIRA_PASSWORD, and GITHUB_API_TOKEN
+# Set GITHUB_OAUTH_KEY.
+$ export GITHUB_OAUTH_KEY=blabla
+# Set either JIRA_ACCESS_TOKEN (for 4.0.0 and later) or JIRA_USERNAME / JIRA_PASSWORD.
+$ export JIRA_ACCESS_TOKEN=blabla
 $ export JIRA_USERNAME=blabla
 $ export JIRA_PASSWORD=blabla
-$ export GITHUB_API_TOKEN=blabla
 # Translate names generated in the previous step, reading from known_translations if necessary
 $ ./translate-contributors.py
 </code></pre></div></div>
 
 <p>Additionally, if you wish to give more specific credit for developers of larger patches, you may
-use the the following commands to identify large patches. Extra care must be taken to make sure
+use the following commands to identify large patches. Extra care must be taken to make sure
 commits from previous releases are not counted since git cannot easily associate commits that
 were back ported into different branches.</p>
 
