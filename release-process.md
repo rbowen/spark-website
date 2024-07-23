@@ -395,7 +395,7 @@ warnings about author names not being properly translated. To fix this, run
 which fetches potential replacements from GitHub and JIRA. For instance:
 
 ```
-$ cd release-spark/dev/create-release
+$ cd dev/create-release
 # Set RELEASE_TAG and PREVIOUS_RELEASE_TAG
 $ export RELEASE_TAG=v1.1.1
 $ export PREVIOUS_RELEASE_TAG=v1.1.0
