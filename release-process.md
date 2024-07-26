@@ -283,8 +283,9 @@ After the vote passes and you moved the approved RC to the release repository, y
 the RC directories from the staging repository. For example:
 
 ```
-svn rm https://dist.apache.org/repos/dist/dev/spark/v2.3.1-rc1-bin/ \
-  https://dist.apache.org/repos/dist/dev/spark/v2.3.1-rc1-docs/ \
+RC=v3.5.2-rc3 && \
+  svn rm https://dist.apache.org/repos/dist/dev/spark/"${RC}"-bin/ \
+  https://dist.apache.org/repos/dist/dev/spark/"${RC}"-docs/ \
   -m"Removing RC artifacts."
 ```
 

@@ -428,8 +428,9 @@ Since it requires further manual steps, please also contact the <a href="mailto:
 <p>After the vote passes and you moved the approved RC to the release repository, you should delete
 the RC directories from the staging repository. For example:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>svn rm https://dist.apache.org/repos/dist/dev/spark/v2.3.1-rc1-bin/ \
-  https://dist.apache.org/repos/dist/dev/spark/v2.3.1-rc1-docs/ \
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RC=v3.5.2-rc3 &amp;&amp; \
+  svn rm https://dist.apache.org/repos/dist/dev/spark/"${RC}"-bin/ \
+  https://dist.apache.org/repos/dist/dev/spark/"${RC}"-docs/ \
   -m"Removing RC artifacts."
 </code></pre></div></div>
 
