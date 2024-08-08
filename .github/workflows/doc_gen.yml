@@ -10,11 +10,42 @@ on:
 
 jobs:
   lint:
-    name: check wether all documentation was generated with the right Jekyll version
+    name: check whether all documentation was generated with the right Jekyll version
     runs-on: ubuntu-20.04
     container:
       image: dongjoon/apache-spark-github-action-image:20201025
     steps:
+    - name: Free up disk space
+      shell: 'script -q -e -c "bash {0}"'
+      run: |
+        echo "=================================="
+        echo "Free up disk space on CI system"
+        echo "=================================="
+
+        echo "Listing top 100 largest packages (from large to small)"
+        printf "Installed-Size\tPackage\n"
+        dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n -r | head -n 100
+        df -h
+
+        echo "Removing large packages"
+        rm -rf /__t/CodeQL
+        rm -rf /__t/go
+        rm -rf /__t/node
+
+        apt-get remove --purge -y '^aspnet.*' || true
+        apt-get remove --purge -y '^dotnet-.*' || true
+        apt-get remove --purge -y '^llvm-.*' || true
+        apt-get remove --purge -y 'php.*' || true
+        apt-get remove --purge -y '^mongodb-.*' || true
+        apt-get remove --purge -y 'gfortran-11' || true
+        apt-get remove --purge -y 'humanity-icon-theme' || true
+        apt-get remove --purge -y 'nodejs-doc' || true
+        apt-get remove --purge -y snapd google-chrome-stable microsoft-edge-stable firefox || true
+        apt-get remove --purge -y azure-cli google-cloud-sdk mono-devel powershell libgl1-mesa-dri || true
+        apt-get autoremove --purge -y
+        apt-get clean
+
+        df -h
     - name: Checkout Spark Website repository
       uses: actions/checkout@v2
     - name: Install dependencies for documentation generation
