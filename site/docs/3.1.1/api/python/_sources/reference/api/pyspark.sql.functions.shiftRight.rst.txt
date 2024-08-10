@@ -1,6 +1,0 @@
-pyspark.sql.functions.shiftRight
-================================
-
-.. currentmodule:: pyspark.sql.functions
-
-.. autofunction:: shiftRight

@@ -1,6 +1,0 @@
-pyspark.sql.functions.shiftRightUnsigned
-========================================
-
-.. currentmodule:: pyspark.sql.functions
-
-.. autofunction:: shiftRightUnsigned
