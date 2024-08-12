@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+     Spark Release 3.5.2 | Apache Spark
+    
+  </title>
+
+  
+
+  
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+  <link href="/css/custom.css" rel="stylesheet">
+  <!-- Code highlighter CSS -->
+  <link href="/css/pygments-default.css" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(["disableCookies"]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://analytics.apache.org/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '40']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <!-- End Matomo Code -->
+</head>
+<body class="global">
+<nav class="navbar navbar-expand-lg navbar-dark p-0 px-4" style="background: #1D6890;">
+  <a class="navbar-brand" href="/">
+    <img src="/images/spark-logo-rev.svg" alt="" width="141" height="72">
+  </a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+          aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse col-md-12 col-lg-auto pt-4" id="navbarContent">
+
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/downloads.html">Download</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="libraries" role="button" data-bs-toggle="dropdown"
+           aria-expanded="false">
+          Libraries
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="libraries">
+          <li><a class="dropdown-item" href="/sql/">SQL and DataFrames</a></li>
+          <li><a class="dropdown-item" href="/spark-connect/">Spark Connect</a></li>
+          <li><a class="dropdown-item" href="/streaming/">Spark Streaming</a></li>
+          <li><a class="dropdown-item" href="/pandas-on-spark/">pandas on Spark</a></li>
+          <li><a class="dropdown-item" href="/mllib/">MLlib (machine learning)</a></li>
+          <li><a class="dropdown-item" href="/graphx/">GraphX (graph)</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="/third-party-projects.html">Third-Party Projects</a></li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="documentation" role="button" data-bs-toggle="dropdown"
+           aria-expanded="false">
+          Documentation
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="documentation">
+          <li><a class="dropdown-item" href="/docs/latest/">Latest Release</a></li>
+          <li><a class="dropdown-item" href="/documentation.html">Older Versions and Other Resources</a></li>
+          <li><a class="dropdown-item" href="/faq.html">Frequently Asked Questions</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/examples.html">Examples</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="community" role="button" data-bs-toggle="dropdown"
+           aria-expanded="false">
+          Community
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="community">
+          <li><a class="dropdown-item" href="/community.html">Mailing Lists &amp; Resources</a></li>
+          <li><a class="dropdown-item" href="/contributing.html">Contributing to Spark</a></li>
+          <li><a class="dropdown-item" href="/improvement-proposals.html">Improvement Proposals (SPIP)</a>
+          </li>
+          <li><a class="dropdown-item" href="https://issues.apache.org/jira/browse/SPARK">Issue Tracker</a>
+          </li>
+          <li><a class="dropdown-item" href="/powered-by.html">Powered By</a></li>
+          <li><a class="dropdown-item" href="/committers.html">Project Committers</a></li>
+          <li><a class="dropdown-item" href="/history.html">Project History</a></li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="developers" role="button" data-bs-toggle="dropdown"
+           aria-expanded="false">
+          Developers
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="developers">
+          <li><a class="dropdown-item" href="/developer-tools.html">Useful Developer Tools</a></li>
+          <li><a class="dropdown-item" href="/versioning-policy.html">Versioning Policy</a></li>
+          <li><a class="dropdown-item" href="/release-process.html">Release Process</a></li>
+          <li><a class="dropdown-item" href="/security.html">Security</a></li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="github" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          GitHub
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="github">
+          <li><a class="dropdown-item" href="https://github.com/apache/spark">spark</a></li>
+          <li><a class="dropdown-item" href="https://github.com/apache/spark-connect-go">spark-connect-go</a></li>
+          <li><a class="dropdown-item" href="https://github.com/apache/spark-docker">spark-docker</a></li>
+          <li><a class="dropdown-item" href="https://github.com/apache/spark-kubernetes-operator">spark-kubernetes-operator</a></li>
+          <li><a class="dropdown-item" href="https://github.com/apache/spark-website">spark-website</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="apacheFoundation" role="button"
+           data-bs-toggle="dropdown" aria-expanded="false">
+          Apache Software Foundation
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="apacheFoundation">
+          <li><a class="dropdown-item" href="https://www.apache.org/">Apache Homepage</a></li>
+          <li><a class="dropdown-item" href="https://www.apache.org/licenses/">License</a></li>
+          <li><a class="dropdown-item"
+                 href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+          <li><a class="dropdown-item" href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+          <li><a class="dropdown-item" href="https://www.apache.org/security/">Security</a></li>
+          <li><a class="dropdown-item" href="https://www.apache.org/events/current-event">Event</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-12 col-md-9">
+      <h2>Spark Release 3.5.2</h2>
+
+
+<p>Spark 3.5.2 is the second maintenance release containing security and correctness fixes. This release is based on the branch-3.5 maintenance branch of Spark. We strongly recommend all 3.5 users to upgrade to this stable release.</p>
+
+<h3 id="notable-changes">Notable changes</h3>
+
+<ul>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-45988">[SPARK-45988]</a>: Fix <code class="language-plaintext highlighter-rouge">pyspark.pandas.tests.computation.test_apply_func</code> in Python 3.11</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-45989">[SPARK-45989]</a>: Fix <code class="language-plaintext highlighter-rouge">pyspark.pandas.tests.connect.computation.test_parity_apply_func</code> in Python 3.11</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-46411">[SPARK-46411]</a>: Change to use bcprov/bcpkix-jdk18on for test</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47368">[SPARK-47368]</a>: Remove inferTimestampNTZ config check in ParquetRowConverter</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47370">[SPARK-47370]</a>: Add migration doc: TimestampNTZ type inference on Parquet files</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47435">[SPARK-47435]</a>: SPARK-45561 causes mysql unsigned tinyint overflow</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47440">[SPARK-47440]</a>: SQLServer does not support LIKE operator in binary comparison</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47473">[SPARK-47473]</a>: Correctness issue of converting postgres INFINITIES timestamps</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47494">[SPARK-47494]</a>: Add migration doc for the behavior change of Parquet timestamp inference since Spark 3.3</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47537">[SPARK-47537]</a>: Use MySQL Connector/J for MySQL DB instead of MariaDB Connector/J</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47666">[SPARK-47666]</a>: Fix NPE when reading mysql bit array as LongType</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47770">[SPARK-47770]</a>: Fix <code class="language-plaintext highlighter-rouge">GenerateMIMAIgnore.isPackagePrivateModule</code> to return false instead of failing</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47774">[SPARK-47774]</a>: Remove redundant rules from <code class="language-plaintext highlighter-rouge">MimaExcludes</code></li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47847">[SPARK-47847]</a>: Deprecate spark.network.remoteReadNioBufferConversion</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48016">[SPARK-48016]</a>: Fix a bug in try_divide function when with decimals</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48068">[SPARK-48068]</a>: <code class="language-plaintext highlighter-rouge">mypy</code> should have <code class="language-plaintext highlighter-rouge">--python-executable</code> parameter</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48083">[SPARK-48083]</a>: session.copyFromLocalToFs failure with 3.5 client &lt;&gt; 4.0 server</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48084">[SPARK-48084]</a>: pyspark.ml.connect.evaluation not working in 3.5 client &lt;&gt; 4.0 server</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48086">[SPARK-48086]</a>: Different Arrow versions in client and server</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48087">[SPARK-48087]</a>: Python UDTF incompatibility in 3.5 client &lt;&gt; 4.0 server</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48088">[SPARK-48088]</a>: Skip tests being failed in client 3.5 &lt;&gt; server 4.0</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48089">[SPARK-48089]</a>: Streaming query listener not working in 3.5 client &lt;&gt; 4.0 server</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48090">[SPARK-48090]</a>: Streaming exception catch failure in 3.5 client &lt;&gt; 4.0 server</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48109">[SPARK-48109]</a>: Enable <code class="language-plaintext highlighter-rouge">k8s-integration-tests</code> only for <code class="language-plaintext highlighter-rouge">kubernetes</code> module change</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48116">[SPARK-48116]</a>: Run <code class="language-plaintext highlighter-rouge">pyspark-pandas*</code> only in PR builder and Daily Python CIs</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48132">[SPARK-48132]</a>: Run <code class="language-plaintext highlighter-rouge">k8s-integration-tests</code> only in PR builder and Daily CIs</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48133">[SPARK-48133]</a>: Run <code class="language-plaintext highlighter-rouge">sparkr</code> only in PR builders and Daily CIs</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48138">[SPARK-48138]</a>: Disable a flaky <code class="language-plaintext highlighter-rouge">SparkSessionE2ESuite.interrupt tag</code> test</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48167">[SPARK-48167]</a>: Skip known behaviour change by SPARK-46122</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48178">[SPARK-48178]</a>: Run <code class="language-plaintext highlighter-rouge">build/scala-213/java-11-17</code> jobs of branch-3.5 only if needed</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48192">[SPARK-48192]</a>: Enable TPC-DS and docker tests in forked repository</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48930">[SPARK-48930]</a>: Redact <code class="language-plaintext highlighter-rouge">awsAccessKeyId</code> by including <code class="language-plaintext highlighter-rouge">accesskey</code> pattern</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49054">[SPARK-49054]</a>: Column default value should support current_* functions</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47305">[SPARK-47305]</a>: PruneFilters incorrectly tags isStreaming flag when replacing child of Filter with LocalRelation</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47307">[SPARK-47307]</a>: Spark 3.3 produces invalid base64</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47318">[SPARK-47318]</a>: AuthEngine key exchange needs additional KDF round</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47385">[SPARK-47385]</a>: Tuple encoder produces wrong results with Option inputs</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47398">[SPARK-47398]</a>: AQE doesn&#8217;t allow for extension of InMemoryTableScanExec</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47434">[SPARK-47434]</a>: Streaming Statistics link redirect causing 302 error</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47455">[SPARK-47455]</a>: Fix Resource Handling of <code class="language-plaintext highlighter-rouge">scalaStyleOnCompileConfig</code> in SparkBuild.scala</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47463">[SPARK-47463]</a>: An error occurred while pushing down the filter of if expression for iceberg datasource.</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47503">[SPARK-47503]</a>: Spark history sever fails to display query for cached JDBC relation named in quotes</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47507">[SPARK-47507]</a>: Upgrade ORC to 1.9.3</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47521">[SPARK-47521]</a>: Use <code class="language-plaintext highlighter-rouge">Utils.tryWithResource</code> during reading shuffle data from external storage</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47561">[SPARK-47561]</a>: Fix analyzer rule order issues about Alias</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47633">[SPARK-47633]</a>: Cache miss for queries using JOIN LATERAL with join condition</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47636">[SPARK-47636]</a>: Use Java 17 instead of 17-jre image in K8s Dockerfile</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47646">[SPARK-47646]</a>: try_to_number fails with NPE for malformed input</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47676">[SPARK-47676]</a>: Clean up the removed <code class="language-plaintext highlighter-rouge">VersionsSuite</code> references</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47762">[SPARK-47762]</a>: Add pyspark.sql.connect.protobuf into setup.py</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47824">[SPARK-47824]</a>: Nondeterminism in pyspark.pandas.series.asof</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47828">[SPARK-47828]</a>: DataFrameWriterV2.overwrite fails with invalid plan</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47840">[SPARK-47840]</a>: Remove foldable propagation across Streaming Aggregate/Join nodes</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47895">[SPARK-47895]</a>: group by all should be idempotent</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47904">[SPARK-47904]</a>: Preserve case in Avro schema when using enableStableIdentifiersForUnionType</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47910">[SPARK-47910]</a>: Memory leak when interrupting shuffle write using zstd compression</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47921">[SPARK-47921]</a>: Fix ExecuteJobTag creation in ExecuteHolder</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47927">[SPARK-47927]</a>: Nullability after join not respected in UDF</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48019">[SPARK-48019]</a>: ColumnVectors with dictionaries and nulls are not read/copied correctly</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48037">[SPARK-48037]</a>: SortShuffleWriter lacks shuffle write related metrics resulting in potentially inaccurate data</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48105">[SPARK-48105]</a>: Fix the data corruption issue when state store unload and snapshotting happens concurrently for HDFS state store</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48128">[SPARK-48128]</a>: BitwiseCount / bit_count generated code for boolean inputs fails to compile</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48172">[SPARK-48172]</a>: Fix escaping issues in JDBCDialects</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48173">[SPARK-48173]</a>: CheckAnalsis should see the entire query plan</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48179">[SPARK-48179]</a>: Pin <code class="language-plaintext highlighter-rouge">nbsphinx</code> to <code class="language-plaintext highlighter-rouge">0.9.3</code></li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48184">[SPARK-48184]</a>: Always set the seed of dataframe.sample in Client side</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48197">[SPARK-48197]</a>: avoid assert error for invalid lambda function</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48237">[SPARK-48237]</a>: After executing <code class="language-plaintext highlighter-rouge">test-dependencies.sh</code>, the dir <code class="language-plaintext highlighter-rouge">dev/pr-deps</code> should be deleted</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48241">[SPARK-48241]</a>: CSV parsing failure with char/varchar type columns</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48248">[SPARK-48248]</a>: Fix nested array to respect legacy conf of inferArrayTypeFromFirstElement</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48265">[SPARK-48265]</a>: Infer window group limit batch should do constant folding</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48273">[SPARK-48273]</a>: Late rewrite of PlanWithUnresolvedIdentifier</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48286">[SPARK-48286]</a>: Analyze &#39;exists&#39; default expression instead of &#39;current&#39; default expression in structField to v2 column conversion</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48294">[SPARK-48294]</a>: Make nestedTypeMissingElementTypeError case insensitive</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48297">[SPARK-48297]</a>: Char/Varchar breaks in TRANSFORM clause</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48237">[SPARK-48237]</a>: After executing <code class="language-plaintext highlighter-rouge">test-dependencies.sh</code>, the dir <code class="language-plaintext highlighter-rouge">dev/pr-deps</code> should be deleted</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48241">[SPARK-48241]</a>: CSV parsing failure with char/varchar type columns</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48248">[SPARK-48248]</a>: Fix nested array to respect legacy conf of inferArrayTypeFromFirstElement</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48265">[SPARK-48265]</a>: Infer window group limit batch should do constant folding</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48273">[SPARK-48273]</a>: Late rewrite of PlanWithUnresolvedIdentifier</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48286">[SPARK-48286]</a>: Analyze &#39;exists&#39; default expression instead of &#39;current&#39; default expression in structField to v2 column conversion</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48294">[SPARK-48294]</a>: Make nestedTypeMissingElementTypeError case insensitive</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48297">[SPARK-48297]</a>: Char/Varchar breaks in TRANSFORM clause</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48308">[SPARK-48308]</a>: Unify getting data schema without partition columns in FileSourceStrategy</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48428">[SPARK-48428]</a>: IllegalStateException due to nested column aliasing</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48481">[SPARK-48481]</a>: OptimizeOneRowPlan should not be effective for streaming DataFrame</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48484">[SPARK-48484]</a>: V2Write use the same TaskAttemptId for different task attempts</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48498">[SPARK-48498]</a>: Always do char padding in predicates</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48608">[SPARK-48608]</a>: Spark 3.5: fails to build with value defaultValueNotConstantError is not a member of object org.apache.spark.sql.errors.QueryCompilationErrors</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48642">[SPARK-48642]</a>: False reported SparkOutOfMemoryError caused by killing task on spilling</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48666">[SPARK-48666]</a>: A filter should not be pushed down if it contains Unevaluable expression</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48709">[SPARK-48709]</a>: Varchar resolution mismatch for DataSourceV2 CTAS</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48719">[SPARK-48719]</a>: Wrong result in regr_slope &amp; regr_intercept aggregate with tuples has NULL</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48791">[SPARK-48791]</a>: Perf regression due to accumulator registration overhead using CopyOnWriteArrayList</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48843">[SPARK-48843]</a>: Infinite loop with GlobalLimit/BindParameters</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48845">[SPARK-48845]</a>: GenericUDF Can not CatchException From Child UDFs</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48863">[SPARK-48863]</a>: ClassCastException: class org.apache.spark.unsafe.types.UTF8String cannot be cast to class org.apache.spark.sql.catalyst.util.ArrayData when parsing JSON with &#8220;spark.sql.json.enablePartialResults&#8221; enabled</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48871">[SPARK-48871]</a>: Fix INVALID_NON_DETERMINISTIC_EXPRESSIONS validation in CheckAnalysis</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48921">[SPARK-48921]</a>: ScalaUDF in subquery should run through analyzer</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48991">[SPARK-48991]</a>: FileStreamSink.hasMetadata handles invalid path</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49000">[SPARK-49000]</a>: Aggregation with DISTINCT gives wrong results when dealing with literals</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49005">[SPARK-49005]</a>: Use <code class="language-plaintext highlighter-rouge">17-jammy</code> instead of <code class="language-plaintext highlighter-rouge">17</code> to prevent Python 3.12</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49065">[SPARK-49065]</a>: Rebasing in legacy formatters/parsers must support non JVM default time zones</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49094">[SPARK-49094]</a>: ignoreCorruptFiles file source option is partially supported for orc format</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49099">[SPARK-49099]</a>: Refactor CatalogManager.setCurrentNamespace</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-45587">[SPARK-45587]</a>: Skip UNIDOC and MIMA in build GitHub Action job</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-45593">[SPARK-45593]</a>: Building a runnable distribution from master code running spark-sql raise error &#8220;java.lang.ClassNotFoundException: org.sparkproject.guava.util.concurrent.internal.InternalFutureFailureAccess&#8221;</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47172">[SPARK-47172]</a>: Upgrade Transport block cipher mode to GCM</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47299">[SPARK-47299]</a>: Use the same <code class="language-plaintext highlighter-rouge">versions.json</code> in the dropdown of different versions of PySpark documents</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47734">[SPARK-47734]</a>: Fix flaky pyspark.sql.dataframe.DataFrame.writeStream doctest by stopping streaming query</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47825">[SPARK-47825]</a>: Make <code class="language-plaintext highlighter-rouge">KinesisTestUtils</code> &amp; <code class="language-plaintext highlighter-rouge">WriteInputFormatTestDataGenerator</code> deprecated</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47897">[SPARK-47897]</a>: ExpressionSet performance regression in scala 2.12</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48081">[SPARK-48081]</a>: Fix ClassCastException in NTile.checkInputDataTypes() when argument is non-foldable or of wrong type</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48292">[SPARK-48292]</a>: Revert [SPARK-39195][SQL] Spark OutputCommitCoordinator should abort stage when committed file not consistent with task status</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48391">[SPARK-48391]</a>: Use addAll instead of add function in TaskMetrics to accelerate</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48424">[SPARK-48424]</a>: Make dev/is-changed.py to return true if it fails</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48586">[SPARK-48586]</a>: Remove lock acquisition in doMaintenance() by making a deep copy of file mappings in RocksDBFileManager in load()</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48610">[SPARK-48610]</a>: Remove ExplainUtils.processPlan synchronize</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48806">[SPARK-48806]</a>: Pass actual exception when url_decode fails</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47481">[SPARK-47481]</a>: Fix Python linter</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48535">[SPARK-48535]</a>: Update doc to log warning for join null related config usage</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48934">[SPARK-48934]</a>: Python datetime types converted incorrectly for setting timeout in applyInPandasWithState</li>
+</ul>
+
+<h3 id="dependency-changes">Dependency changes</h3>
+
+<ul>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-45445">[SPARK-45445]</a>: Upgrade snappy to 1.1.10.5</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-46335">[SPARK-46335]</a>: Upgrade Maven to 3.9.6 for MNG-7913</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47083">[SPARK-47083]</a>: Upgrade <code class="language-plaintext highlighter-rouge">commons-codec</code> to 1.16.1</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47111">[SPARK-47111]</a>: Upgrade <code class="language-plaintext highlighter-rouge">PostgreSQL</code> JDBC driver to 42.7.2 and docker image to 16.2</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47182">[SPARK-47182]</a>: Exclude <code class="language-plaintext highlighter-rouge">commons-(io|lang3)</code> transitive dependencies from <code class="language-plaintext highlighter-rouge">commons-compress</code> and <code class="language-plaintext highlighter-rouge">avro-*</code></li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47428">[SPARK-47428]</a>: Upgrade Jetty to 9.4.54.v20240208</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47432">[SPARK-47432]</a>: Add <code class="language-plaintext highlighter-rouge">pyarrow</code> upper bound requirement, <code class="language-plaintext highlighter-rouge">&lt;13.0.0</code></li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-47790">[SPARK-47790]</a>: Upgrade <code class="language-plaintext highlighter-rouge">commons-io</code> to 2.16.1</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48494">[SPARK-48494]</a>: Update airlift:aircompressor to 0.27</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48920">[SPARK-48920]</a>: Upgrade ORC to 1.9.4</li>
+</ul>
+
+<p>You can consult JIRA for the <a href="https://s.apache.org/spark-3.5.2">detailed changes</a>.</p>
+
+<p>We would like to acknowledge all community members for contributing patches to this release.</p>
+
+
+<p>
+<br/>
+<a href="/news/">Spark News Archive</a>
+</p>
+
+    </div>
+    <div class="col-12 col-md-3">
+      <div class="news" style="margin-bottom: 20px;">
+        <h5>Latest News</h5>
+        <ul class="list-unstyled">
+          
+          <li><a href="/news/spark-3-5-2-released.html">Spark 3.5.2 released</a>
+            <span class="small">(Aug 10, 2024)</span></li>
+          
+          <li><a href="/news/spark-4.0.0-preview1.html">Preview release of Spark 4.0</a>
+            <span class="small">(Jun 03, 2024)</span></li>
+          
+          <li><a href="/news/spark-3-4-3-released.html">Spark 3.4.3 released</a>
+            <span class="small">(Apr 18, 2024)</span></li>
+          
+          <li><a href="/news/spark-3-5-1-released.html">Spark 3.5.1 released</a>
+            <span class="small">(Feb 23, 2024)</span></li>
+          
+        </ul>
+        <p class="small" style="text-align: right;"><a href="/news/index.html">Archive</a></p>
+      </div>
+      <div style="text-align:center; margin-bottom: 20px;">
+        <a href="https://www.apache.org/events/current-event.html">
+          <img src="https://www.apache.org/events/current-event-234x60.png" style="max-width: 100%;"/>
+        </a>
+      </div>
+      <div class="hidden-xs hidden-sm">
+        <a href="/downloads.html" class="btn btn-cta btn-lg d-grid" style="margin-bottom: 30px;">
+          Download Spark
+        </a>
+        <p style="font-size: 16px; font-weight: 500; color: #555;">
+          Built-in Libraries:
+        </p>
+        <ul class="list-none">
+          <li><a href="/sql/">SQL and DataFrames</a></li>
+          <li><a href="/streaming/">Spark Streaming</a></li>
+          <li><a href="/mllib/">MLlib (machine learning)</a></li>
+          <li><a href="/graphx/">GraphX (graph)</a></li>
+        </ul>
+        <a href="/third-party-projects.html">Third-Party Projects</a>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <footer class="small">
+    <hr>
+    Apache Spark, Spark, Apache, the Apache feather logo, and the Apache Spark project logo are either registered
+    trademarks or trademarks of The Apache Software Foundation in the United States and other countries.
+    See guidance on use of Apache Spark <a href="/trademarks.html">trademarks</a>.
+    All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+    Copyright &copy; 2018 The Apache Software Foundation, Licensed under the
+    <a href="https://www.apache.org/licenses/">Apache License, Version 2.0</a>.
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="/js/lang-tabs.js"></script>
+<script src="/js/downloads.js"></script>
+</body>
+</html>
