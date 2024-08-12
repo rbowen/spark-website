@@ -11,4 +11,4 @@ meta:
   _edit_last: '4'
   _wpas_done_all: '1'
 ---
-We are happy to announce the availability of <a href="{{site.baseurl}}/releases/spark-release-3-5-2.html" title="Spark Release 3.5.1">Spark 3.5.2</a>! Visit the <a href="{{site.baseurl}}/releases/spark-release-3-5-2.html" title="Spark Release 3.5.2">release notes</a> to read about the new features, or <a href="{{site.baseurl}}/downloads.html">download</a> the release today.
+We are happy to announce the availability of <a href="{{site.baseurl}}/releases/spark-release-3-5-2.html" title="Spark Release 3.5.2">Spark 3.5.2</a>! Visit the <a href="{{site.baseurl}}/releases/spark-release-3-5-2.html" title="Spark Release 3.5.2">release notes</a> to read about the new features, or <a href="{{site.baseurl}}/downloads.html">download</a> the release today.
