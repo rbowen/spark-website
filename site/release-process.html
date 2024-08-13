@@ -189,7 +189,6 @@
     <ul>
       <li><a href="#upload-to-apache-release-directory">Upload to Apache release directory</a></li>
       <li><a href="#upload-to-pypi">Upload to PyPI</a></li>
-      <li><a href="#publish-to-cran">Publish to CRAN</a></li>
       <li><a href="#remove-rc-artifacts-from-repositories">Remove RC artifacts from repositories</a></li>
       <li><a href="#remove-old-releases-from-mirror-network">Remove old releases from Mirror Network</a></li>
       <li><a href="#update-the-apache-spark-repository">Update the Apache Spark<sup>TM</sup> repository</a></li>
@@ -371,7 +370,6 @@ that looks something like <code class="language-plaintext highlighter-rouge">[VO
 
 <p>Note that <code class="language-plaintext highlighter-rouge">dev/create-release/do-release-docker.sh</code> script (<code class="language-plaintext highlighter-rouge">finalize</code> step ) automates most of the following steps <strong>except</strong> for:</p>
 <ul>
-  <li>Publish to CRAN</li>
   <li>Update the configuration of Algolia Crawler</li>
   <li>Remove old releases from Mirror Network</li>
   <li>Update the rest of the Spark website</li>
@@ -419,18 +417,15 @@ and the same under <a href="https://repository.apache.org/content/groups/maven-s
 
 <p>The artifacts can be uploaded using <a href="https://pypi.org/project/twine/">twine</a>. Just run:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>twine upload --repository-url https://upload.pypi.org/legacy/ pyspark-{version}.tar.gz pyspark-{version}.tar.gz.asc
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>twine upload -u __token__  -p $PYPI_API_TOKEN \
+    --repository-url https://upload.pypi.org/legacy/ \
+    "pyspark-$PYSPARK_VERSION.tar.gz" \
+    "pyspark-$PYSPARK_VERSION.tar.gz.asc"
 </code></pre></div></div>
 
 <p>Adjusting the command for the files that match the new release. If for some reason the twine upload
 is incorrect (e.g. http failure or other issue), you can rename the artifact to
 <code class="language-plaintext highlighter-rouge">pyspark-version.post0.tar.gz</code>, delete the old artifact from PyPI and re-upload.</p>
-
-<p align="right"><a href="#top">Return to top</a></p>
-<h3 id="publish-to-cran">Publish to CRAN</h3>
-
-<p>Publishing to CRAN is done using <a href="https://cran.r-project.org/submit.html">this form</a>.
-Since it requires further manual steps, please also contact the <a href="mailto:private@spark.apache.org">PMC</a>.</p>
 
 <p align="right"><a href="#top">Return to top</a></p>
 <h3 id="remove-rc-artifacts-from-repositories">Remove RC artifacts from repositories</h3>
@@ -587,18 +582,7 @@ $ git log v1.1.1 --grep "$expr" --shortstat --oneline | grep -B 1 -e "[3-9][0-9]
 <p align="right"><a href="#top">Return to top</a></p>
 <h3 id="create-and-upload-spark-docker-images">Create and upload Spark Docker Images</h3>
 
-<p>The apache/spark-docker provides dockerfiles and Github Action for Spark Docker images publish.</p>
-<ol>
-  <li>Upload Spark Dockerfiles to apache/spark-docker repository, please refer to <a href="https://github.com/apache/spark-docker/pull/33">link</a>.</li>
-  <li>Publish Spark Docker Images:
-    <ol>
-      <li>Enter <a href="https://github.com/apache/spark-docker/actions/workflows/publish.yml">publish page</a>.</li>
-      <li>Click &#8220;Run workflow&#8221;.</li>
-      <li>Select &#8220;The Spark version of Spark image&#8221;, click &#8220;Publish the image or not&#8221;, select &#8220;apache&#8221; as target registry.</li>
-      <li>Click &#8220;Run workflow&#8221; button to publish the image to Apache dockerhub.</li>
-    </ol>
-  </li>
-</ol>
+<p>The apache/spark-docker provides Dockerfiles and GitHub Action for Spark Docker images published, please follow the <a href="https://github.com/apache/spark-docker?tab=readme-ov-file#create-a-new-version">instructions</a> to create and upload the docker images.</p>
 
 <p align="right"><a href="#top">Return to top</a></p>
 <h3 id="create-an-announcement">Create an announcement</h3>

@@ -29,7 +29,6 @@ The release manager role in Spark means you are responsible for a few different 
 - [Finalizing and posting a release](#finalize-the-release)
   - [Upload to Apache release directory](#upload-to-apache-release-directory)
   - [Upload to PyPI](#upload-to-pypi)
-  - [Publish to CRAN](#publish-to-cran)
   - [Remove RC artifacts from repositories](#remove-rc-artifacts-from-repositories)
   - [Remove old releases from Mirror Network](#remove-old-releases-from-mirror-network)
   - [Update the Apache Spark<sup>TM</sup> repository](#update-the-apache-spark-repository)
@@ -208,7 +207,6 @@ that looks something like `[VOTE][RESULT] ...`.
 <h2 id="finalize-the-release">Finalize the release</h2>
 
 Note that `dev/create-release/do-release-docker.sh` script (`finalize` step ) automates most of the following steps **except** for:
-- Publish to CRAN
 - Update the configuration of Algolia Crawler
 - Remove old releases from Mirror Network
 - Update the rest of the Spark website
@@ -259,20 +257,15 @@ You'll need your own PyPI account. If you do not have a PyPI account that has ac
 The artifacts can be uploaded using <a href="https://pypi.org/project/twine/">twine</a>. Just run:
 
 ```
-twine upload --repository-url https://upload.pypi.org/legacy/ pyspark-{version}.tar.gz pyspark-{version}.tar.gz.asc
+twine upload -u __token__  -p $PYPI_API_TOKEN \
+    --repository-url https://upload.pypi.org/legacy/ \
+    "pyspark-$PYSPARK_VERSION.tar.gz" \
+    "pyspark-$PYSPARK_VERSION.tar.gz.asc"
 ```
 
 Adjusting the command for the files that match the new release. If for some reason the twine upload
 is incorrect (e.g. http failure or other issue), you can rename the artifact to
 `pyspark-version.post0.tar.gz`, delete the old artifact from PyPI and re-upload.
-
-
-<p align="right"><a href="#top">Return to top</a></p>
-<h3 id="publish-to-cran">Publish to CRAN</h3>
-
-Publishing to CRAN is done using <a href="https://cran.r-project.org/submit.html">this form</a>.
-Since it requires further manual steps, please also contact the <a href="mailto:private@spark.apache.org">PMC</a>.
-
 
 <p align="right"><a href="#top">Return to top</a></p>
 <h3 id="remove-rc-artifacts-from-repositories">Remove RC artifacts from repositories</h3>
@@ -436,13 +429,8 @@ $ git log v1.1.1 --grep "$expr" --shortstat --oneline | grep -B 1 -e "[3-9][0-9]
 <p align="right"><a href="#top">Return to top</a></p>
 <h3 id="create-and-upload-spark-docker-images">Create and upload Spark Docker Images</h3>
 
-The apache/spark-docker provides dockerfiles and Github Action for Spark Docker images publish.
-1. Upload Spark Dockerfiles to apache/spark-docker repository, please refer to [link](https://github.com/apache/spark-docker/pull/33).
-2. Publish Spark Docker Images:
-    1. Enter [publish page](https://github.com/apache/spark-docker/actions/workflows/publish.yml).
-    2. Click "Run workflow".
-    3. Select "The Spark version of Spark image", click "Publish the image or not", select "apache" as target registry.
-    4. Click "Run workflow" button to publish the image to Apache dockerhub.
+The apache/spark-docker provides Dockerfiles and GitHub Action for Spark Docker images published, please follow the [instructions](https://github.com/apache/spark-docker?tab=readme-ov-file#create-a-new-version) to create and upload the docker images.
+
 
 <p align="right"><a href="#top">Return to top</a></p>
 <h3 id="create-an-announcement">Create an announcement</h3>
