@@ -52,7 +52,7 @@ storage system that supports running Spark
 - <a href="https://github.com/filodb/FiloDB">FiloDB</a> - a Spark integrated analytical/columnar 
 database, with in-memory option capable of sub-second concurrent queries
 - <a href="http://zeppelin-project.org/">Zeppelin</a> - Multi-purpose notebook which supports 20+ language backends, including Apache Spark
-- <a href="https://github.com/GoogleCloudPlatform/spark-on-k8s-operator">K8S Operator for Apache Spark</a> - Kubernetes operator for specifying and managing the lifecycle of Apache Spark applications on Kubernetes.
+- <a href="https://github.com/kubeflow/spark-operator">Kubeflow Spark Operator</a> - Kubernetes operator for managing the lifecycle of Apache Spark applications on Kubernetes.
 - <a href="https://developer.ibm.com/storage/products/ibm-spectrum-conductor-spark/">IBM Spectrum Conductor</a> - Cluster management software that integrates with Spark and modern computing frameworks.
 - <a href="https://mlflow.org">MLflow</a> - Open source platform to manage the machine learning lifecycle, including deploying models from diverse machine learning libraries on Apache Spark.
 - <a href="https://datafu.apache.org/docs/spark/getting-started.html">Apache DataFu</a> - A collection of utils and user-defined-functions for working with large scale data in Apache Spark, as well as making Scala-Python interoperability easier.
