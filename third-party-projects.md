@@ -70,6 +70,7 @@ transforming, and analyzing genomic data using Apache Spark
 <h2>Performance, monitoring, and debugging tools for Spark</h2>
 
 - <a href="https://www.datamechanics.co/delight">Data Mechanics Delight</a> - Delight is a free, hosted, cross-platform Spark UI alternative backed by an open-source Spark agent. It features new metrics and visualizations to simplify Spark monitoring and performance tuning.
+- <a href="https://github.com/dataflint/spark">DataFlint</a> - DataFlint is A Spark UI replacement installed via an open-source library, which updates in real-time and alerts on performance issues
 
 <h2>Additional language bindings</h2>
 
