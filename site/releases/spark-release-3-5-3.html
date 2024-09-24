@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-     A Standalone Job in Scala - Spark Screencast #4 | Apache Spark
+     Spark Release 3.5.3 | Apache Spark
     
   </title>
 
@@ -153,14 +153,52 @@
 <div class="container">
   <div class="row mt-4">
     <div class="col-12 col-md-9">
-      <h2>A Standalone Job in Scala - Spark Screencast #4</h2>
+      <h2>Spark Release 3.5.3</h2>
 
 
-<p>In this Spark screencast, we create a standalone Apache Spark job in Scala. In the job, we create a spark context and read a file into an RDD of strings; then apply transformations and actions to the RDD and print out the results.</p>
+<p>Spark 3.5.3 is the third maintenance release containing security and correctness fixes. This release is based on the branch-3.5 maintenance branch of Spark. We strongly recommend all 3.5 users to upgrade to this stable release.</p>
 
-<div class="video-container video-16x9 shadow"><iframe width="755" height="425" src="//www.youtube.com/embed/GaBn-YjlR8Q?autohide=0&amp;showinfo=0&amp;list=PL-x35fyliRwhKT-NpTKprPW1bkbdDcTTW" frameborder="0" allowfullscreen=""></iframe></div>
+<h3 id="notable-changes">Notable changes</h3>
 
-<p>For more information and links to other Spark screencasts, check out the <a href="/documentation.html">Spark documentation page</a>.</p>
+<ul>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49176">[SPARK-49176]</a> - Fix <code class="language-plaintext highlighter-rouge">spark.ui.custom.executor.log.url</code> docs by adding K8s</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49182">[SPARK-49182]</a> - Stop publish site/docs/{version}/api/python/_sources</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49197">[SPARK-49197]</a> - Redact <code class="language-plaintext highlighter-rouge">Spark Command</code> output in <code class="language-plaintext highlighter-rouge">launcher</code> module</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-43242">[SPARK-43242]</a> - diagnoseCorruption should not throw Unexpected type of BlockId for ShuffleBlockBatchId</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-46037">[SPARK-46037]</a> - When Left Join build Left, ShuffledHashJoinExec may result in incorrect results</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-46632">[SPARK-46632]</a> - EquivalentExpressions throw IllegalStateException</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-48965">[SPARK-48965]</a> - toJSON produces wrong values if DecimalType information is lost in as[Product]</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49030">[SPARK-49030]</a> - Self join of a CTE seems non-deterministic</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49038">[SPARK-49038]</a> - Spark UI is showing wrong timing metrics for min and median time.</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49039">[SPARK-49039]</a> - Reset checkbox when executor metrics are loaded in the Stages tab</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49179">[SPARK-49179]</a> - Fix v2 multi bucketed inner joins throw AssertionError</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49183">[SPARK-49183]</a> - V2SessionCatalog.createTable should respect PROP_IS_MANAGED_LOCATION</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49193">[SPARK-49193]</a> - Improve the performance of RowSetUtils.toColumnBasedSet</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49200">[SPARK-49200]</a> - Fix null type non-codegen ordering exception</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49300">[SPARK-49300]</a> - Fix Hadoop delegation token leak when tokenRenewalInterval is not set.</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49333">[SPARK-49333]</a> - Shutdown timeout thread while cleaning up SparkExecuteStatementOperation</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49352">[SPARK-49352]</a> - Avoid redundant array transform for identical expression</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49359">[SPARK-49359]</a> - allow StagedTableCatalog implementations to fall back to non-atomic write</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49381">[SPARK-49381]</a> - Fix <code class="language-plaintext highlighter-rouge">SPARK-41388</code> test case to assert the result</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49385">[SPARK-49385]</a> - Fix <code class="language-plaintext highlighter-rouge">getReusablePVCs</code> to use <code class="language-plaintext highlighter-rouge">podCreationTimeout</code> instead of <code class="language-plaintext highlighter-rouge">podAllocationDelay</code></li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49402">[SPARK-49402]</a> - Fix Binder integration in PySpark documentation</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49476">[SPARK-49476]</a> - Base64 nullability change</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49480">[SPARK-49480]</a> - NullPointerException from SparkThrowableHelper.isInternalError method</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49509">[SPARK-49509]</a> - Use Platform.allocateDirectBuffer instead of ByteBuffer.allocateDirect</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49628">[SPARK-49628]</a> - ConstantFolding should copy stateful expression before evaluating</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49699">[SPARK-49699]</a> - Disable PruneFilters for streaming workloads</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49152">[SPARK-49152]</a> - V2SessionCatalog should use V2Command</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49211">[SPARK-49211]</a> - V2 Catalog can also support built-in data sources</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49246">[SPARK-49246]</a> - TableCatalog#loadTable should indicate if it&#8217;s for writing</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49275">[SPARK-49275]</a> - Fix return type nullness of the xpath expression</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49408">[SPARK-49408]</a> - Poor performance in ProjectingInternalRow</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-49520">[SPARK-49520]</a> - ArrayRemove() Function Need Remove NULL Value</li>
+  <li><a href="https://issues.apache.org/jira/browse/SPARK-45590">[SPARK-45590]</a> - okio-1.15.0 CVE-2023-3635</li>
+</ul>
+
+<p>You can consult JIRA for the <a href="https://s.apache.org/spark-3.5.3">detailed changes</a>.</p>
+
+<p>We would like to acknowledge all community members for contributing patches to this release.</p>
 
 
 <p>
