@@ -22,7 +22,6 @@ Spark 3.5.3 is the third maintenance release containing security and correctness
 - [[SPARK-46037]](https://issues.apache.org/jira/browse/SPARK-46037) - When Left Join build Left, ShuffledHashJoinExec may result in incorrect results
 - [[SPARK-46632]](https://issues.apache.org/jira/browse/SPARK-46632) - EquivalentExpressions throw IllegalStateException
 - [[SPARK-48965]](https://issues.apache.org/jira/browse/SPARK-48965) - toJSON produces wrong values if DecimalType information is lost in as[Product]
-- [[SPARK-49030]](https://issues.apache.org/jira/browse/SPARK-49030) - Self join of a CTE seems non-deterministic
 - [[SPARK-49038]](https://issues.apache.org/jira/browse/SPARK-49038) - Spark UI is showing wrong timing metrics for min and median time.
 - [[SPARK-49039]](https://issues.apache.org/jira/browse/SPARK-49039) - Reset checkbox when executor metrics are loaded in the Stages tab
 - [[SPARK-49179]](https://issues.apache.org/jira/browse/SPARK-49179) - Fix v2 multi bucketed inner joins throw AssertionError
@@ -39,14 +38,14 @@ Spark 3.5.3 is the third maintenance release containing security and correctness
 - [[SPARK-49476]](https://issues.apache.org/jira/browse/SPARK-49476) - Base64 nullability change
 - [[SPARK-49480]](https://issues.apache.org/jira/browse/SPARK-49480) - NullPointerException from SparkThrowableHelper.isInternalError method
 - [[SPARK-49509]](https://issues.apache.org/jira/browse/SPARK-49509) - Use Platform.allocateDirectBuffer instead of ByteBuffer.allocateDirect
-- [[SPARK-49628]](https://issues.apache.org/jira/browse/SPARK-49628) - ConstantFolding should copy stateful expression before evaluating
-- [[SPARK-49699]](https://issues.apache.org/jira/browse/SPARK-49699) - Disable PruneFilters for streaming workloads
 - [[SPARK-49152]](https://issues.apache.org/jira/browse/SPARK-49152) - V2SessionCatalog should use V2Command
 - [[SPARK-49211]](https://issues.apache.org/jira/browse/SPARK-49211) - V2 Catalog can also support built-in data sources
 - [[SPARK-49246]](https://issues.apache.org/jira/browse/SPARK-49246) - TableCatalog#loadTable should indicate if it's for writing
 - [[SPARK-49275]](https://issues.apache.org/jira/browse/SPARK-49275) - Fix return type nullness of the xpath expression
 - [[SPARK-49408]](https://issues.apache.org/jira/browse/SPARK-49408) - Poor performance in ProjectingInternalRow
-- [[SPARK-49520]](https://issues.apache.org/jira/browse/SPARK-49520) - ArrayRemove() Function Need Remove NULL Value
+
+### Dependency changes
+
 - [[SPARK-45590]](https://issues.apache.org/jira/browse/SPARK-45590) - okio-1.15.0 CVE-2023-3635
 
 You can consult JIRA for the [detailed changes](https://s.apache.org/spark-3.5.3).
