@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-     Spark wins Daytona Gray Sort 100TB Benchmark | Apache Spark
+     Preview release of Spark 4.0 | Apache Spark
     
   </title>
 
@@ -153,16 +153,24 @@
 <div class="container">
   <div class="row mt-4">
     <div class="col-12 col-md-9">
-      <h2>Spark wins Daytona Gray Sort 100TB Benchmark</h2>
+      <h2>Preview release of Spark 4.0</h2>
 
 
-<p>We are proud to announce that Spark won the <a href="http://sortbenchmark.org/">2014 Gray Sort Benchmark</a> (Daytona 100TB category). A team from <a href="http://databricks.com/">Databricks</a> including Spark committers, Reynold Xin, Xiangrui Meng, and Matei Zaharia, <a href="http://databricks.com/blog/2014/11/05/spark-officially-sets-a-new-record-in-large-scale-sorting.html">entered the benchmark using Spark</a>. Spark won a tie with the Themis team from UCSD, and jointly set a new world record in sorting.</p>
+<p>To enable wide-scale community testing of the upcoming Spark 4.0 release, the Apache Spark community has posted a
+<a href="https://archive.apache.org/dist/spark/spark-4.0.0-preview2/">Spark 4.0.0 preview2 release</a>.
+This preview is not a stable release in terms of either API or functionality, but it is meant to give the community early
+access to try the code that will become Spark 4.0. If you would like to test the release,
+please <a href="https://archive.apache.org/dist/spark/spark-4.0.0-preview2">download</a> it, and send feedback using either
+<a href="https://spark.apache.org/community.html">mailing lists</a> or
+<a href="https://issues.apache.org/jira/browse/SPARK/?selectedTab=com.atlassian.jira.jira-projects-plugin:summary-panel">JIRA</a>.
+The documentation is available at the <a href="https://spark.apache.org/docs/4.0.0-preview2/">link</a>.</p>
 
-<p>They used Spark and sorted 100TB of data using 206 EC2 i2.8xlarge machines in 23 minutes. The previous world record was 72 minutes, set by a Hadoop MapReduce cluster of 2100 nodes. This means that Spark sorted the same data 3X faster using 10X fewer machines. All the sorting took place on disk (HDFS), without using Spark’s in-memory cache.</p>
+<p>There are a lot of exciting new features added to Spark 4.0, including ANSI mode by default, Python data source, polymorphic
+Python UDTF, string collation support, new VARIANT data type, streaming state store data source, structured logging, Java 21 support, Java 17 by default
+and many more.</p>
 
-<p>Outperforming large Hadoop MapReduce clusters on sorting not only validates the vision and work done by the Spark community, but also demonstrates that Spark is fulfilling its promise to serve as a faster and more scalable engine for data processing of all sizes.</p>
-
-<p>For more information, see the <a href="http://databricks.com/blog/2014/11/05/spark-officially-sets-a-new-record-in-large-scale-sorting.html">Databricks blog article</a> written by the Reynold Xin.</p>
+<p>We&#8217;d like to thank our contributors and users for their contributions and early feedback to this release. This release would not have
+been possible without you.</p>
 
 
 <p>
