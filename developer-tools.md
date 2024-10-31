@@ -35,17 +35,6 @@ Apache Spark community uses various resources to maintain the community test cov
 - Daily JDBC Docker integration tests with Java 8 and Scala 2.13/SBT
 - Daily TPC-DS benchmark with scale factor 1 with Java 8 and Scala 2.12/SBT
 
-<h3 id="appveyor">AppVeyor</h3>
-
-[AppVeyor](https://ci.appveyor.com/project/ApacheSoftwareFoundation/spark) provides the following on Windows.
-- R unit tests with Java 17/Scala 2.13/SBT
-
-<h3 id="scaleway">Scaleway</h3>
-
-[Scaleway](https://www.scaleway.com) provides the following on MacOS and Apple Silicon.
-- [Java/Scala/Python/R unit tests with Java 17/Scala 2.12/SBT](https://apache-spark.s3.fr-par.scw.cloud/index.html)
-- K8s integration tests (TBD)
-
 <h2>Useful developer tools</h2>
 
 <h3 id="reducing-build-times">Reducing build times</h3>
