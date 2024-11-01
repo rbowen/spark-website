@@ -117,6 +117,5 @@ Feature release branches will, generally, be maintained with bug fix releases fo
 For example, branch 2.3.x is no longer considered maintained as of September 2019, 18 months after the release
 of 2.3.0 in February 2018. No more 2.3.x releases should be expected after that point, even for bug fixes.
 
-The last minor release within a major a release will typically be maintained for longer as an "LTS" release.
-For example, 2.4.0 was released in November 2nd 2018 and had been maintained for 31 months until 2.4.8 was released on May 2021. 2.4.8 is the last release and no more 2.4.x releases should be expected even for bug fixes.
-
+The last minor release within a major release will typically be maintained for longer as an "LTS" release.
+For example, 3.5.0 was released on September 13th 2023 and will be maintained for 31 months until April 12th 2026.
