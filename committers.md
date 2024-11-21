@@ -66,6 +66,7 @@ navigation:
 |Andrew Or|Facebook|
 |Kay Ousterhout|LightStep|
 |Sean Owen|Databricks|
+|Bingkun Pan|Baidu|
 |Tejas Patil|Meta|
 |Nick Pentreath|Automattic|
 |Attila Zsolt Piros|Cloudera|
