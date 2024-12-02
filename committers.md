@@ -238,7 +238,7 @@ Once a PR is merged please leave a comment on the PR stating which branch(es) it
 
 <h3>Policy on backporting bug fixes</h3>
 
-From <a href="https://www.mail-archive.com/dev@spark.apache.org/msg10284.html">`pwendell`</a>:
+From <a href="https://lists.apache.org/thread/6lso20d7km7rwovshg6hpwhmt119034o">`pwendell`</a>:
 
 The trade off when backporting is you get to deliver the fix to people running older versions 
 (great!), but you risk introducing new or even worse bugs in maintenance releases (bad!). 
